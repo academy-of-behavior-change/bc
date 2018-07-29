@@ -1,2 +1,3 @@
 # behaviorchange
-behaviorchange: an R package for behavior change researchers and intervention developers
+
+behaviorchange: Tools for behavior change researchers and professionals
