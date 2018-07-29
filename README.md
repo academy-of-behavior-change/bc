@@ -1,2 +1,2 @@
-# bc
-bc: an R package for researchers in behavior change and intervention developers
+# behaviorchange
+behaviorchange: an R package for researchers in behavior change and intervention developers
