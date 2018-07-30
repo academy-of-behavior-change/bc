@@ -10,30 +10,43 @@ abcd(specs, localBackup = NULL,
   maxLabelLength = 30, silent = FALSE)
 }
 \arguments{
-\item{specs}{The specifications: either a google sheets URL, the path to a local file, a character vector with both, or a matrix or data frame}
+\item{specs}{The specifications: either a google sheets URL,
+the path to a local file, a character vector with both,
+or a matrix or data frame}
 
-\item{localBackup}{Whether to write the specifications to a local backup}
+\item{localBackup}{Whether to write the specifications
+to a local backup}
 
 \item{title}{The title of the diagram}
 
-\item{outputFile}{If specified, the ABCD is written to this file.}
+\item{outputFile}{If specified, the ABCD is written to
+this file.}
 
-\item{outputWidth, outputHeight}{If an `outputFile` is specified, these determine its width and height (in pixels)}
+\item{outputWidth, outputHeight}{If an \code{outputFile} is
+specified, these determine its width and height (in pixels)}
 
-\item{includeColNames}{Whether to include the column names as titles/legend for the entities in each 'column' of the ABCD}
+\item{includeColNames}{Whether to include the column names
+as titles/legend for the entities in each 'column'
+of the ABCD}
 
-\item{maxLabelLength}{At which width to wordt wrap the labels}
+\item{maxLabelLength}{At which width to word wrap the
+labels}
 
-\item{silent}{Whether to suppress (`TRUE`) or show (`FALSE`) more detailed information}
+\item{silent}{Whether to suppress (\code{TRUE}) or show
+(\code{FALSE}) more detailed information}
+}
+\value{
+A list consisting of an \code{input}, \code{intermediate}, and
+\code{output} list, where the ABCD is stored in the \code{output} list
+as \code{graph}.
 }
 \description{
 This function generates an acyclic behavior change diagram (ABCD) from a specification in a google sheet or .csv file.
 }
 \details{
-For details, see ......
+For details, see Peters et al. (2019).
 }
 \examples{
-
 ### Partial acyclic behavior change diagram of only
 ### one performance objective (sub-behavior)
 behaviorchange::abcd(abcd_specs_single_po);
@@ -41,4 +54,12 @@ behaviorchange::abcd(abcd_specs_single_po);
 ### Full acyclic behavior change diagram
 behaviorchange::abcd(abcd_specs_full);
 
+}
+\references{
+Peters, G.-J. Y., et al. (2019) The core of
+behavior change: introducing the Acyclic Behavior Change
+Diagram to report and analyze interventions.
+}
+\author{
+Gjalt-Jorn Peters, \email{gjalt-jorn@a-bc.eu}
 }

@@ -12,11 +12,12 @@ Description: This package is useful for both researchers in the field of
     behavior change or health psychology and for behavior change
     professionals (intervention developers, prevention workers, etc). It
     contains functions to facilitate doing determinant studies and to
-    systematically develop, report, or analyse interventions.
+    systematically develop, report, and analyse interventions.
 URL: https://a-bc.eu
 BugReports: https://github.com/academy-of-behavior-change/behaviorchange/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.0.0)
 Imports: DiagrammeR, googlesheets, utils

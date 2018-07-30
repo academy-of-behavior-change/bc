@@ -2,20 +2,34 @@
 #'
 #' This function generates an acyclic behavior change diagram (ABCD) from a specification in a google sheet or .csv file.
 #'
-#' For details, see ......
+#' For details, see Peters et al. (2019).
 #'
-#' @param specs The specifications: either a google sheets URL, the path to a local file, a character vector with both, or a matrix or data frame
-#' @param localBackup Whether to write the specifications to a local backup
+#' @param specs The specifications: either a google sheets URL,
+#'   the path to a local file, a character vector with both,
+#'   or a matrix or data frame
+#' @param localBackup Whether to write the specifications
+#'   to a local backup
 #' @param title The title of the diagram
-#' @param outputFile If specified, the ABCD is written to this file.
-#' @param outputWidth,outputHeight If an `outputFile` is specified, these determine its width and height (in pixels)
-#' @param includeColNames Whether to include the column names as titles/legend for the entities in each 'column' of the ABCD
-#' @param maxLabelLength At which width to wordt wrap the labels
-#' @param silent Whether to suppress (`TRUE`) or show (`FALSE`) more detailed information
+#' @param outputFile If specified, the ABCD is written to
+#'   this file.
+#' @param outputWidth,outputHeight If an `outputFile` is
+#'   specified, these determine its width and height (in pixels)
+#' @param includeColNames Whether to include the column names
+#'   as titles/legend for the entities in each 'column'
+#'   of the ABCD
+#' @param maxLabelLength At which width to word wrap the
+#'   labels
+#' @param silent Whether to suppress (`TRUE`) or show
+#'   (`FALSE`) more detailed information
 #'
-#' @examples
-#'
-#' ### Partial acyclic behavior change diagram of only
+#' @return A list consisting of an `input`, `intermediate`, and
+#'   `output` list, where the ABCD is stored in the `output` list
+#'   as `graph`.
+#' @author Gjalt-Jorn Peters, \email{gjalt-jorn@@a-bc.eu}
+#' @references Peters, G.-J. Y., et al. (2019) The core of
+#'   behavior change: introducing the Acyclic Behavior Change
+#'   Diagram to report and analyze interventions.
+#' @examples ### Partial acyclic behavior change diagram of only
 #' ### one performance objective (sub-behavior)
 #' behaviorchange::abcd(abcd_specs_single_po);
 #'
@@ -441,7 +455,7 @@ print.abcdiagram <- function(x, ...) {
 #'
 #' This are two (nested) datasets illustrating the logic model of change for
 #' a simple condom use intervention in a way that can be visualised using
-#' the `abcd` function. The full dataset is `abcd_specs_full`, and a subset
+#' the [abcd] function. The full dataset is `abcd_specs_full`, and a subset
 #' that only contains the information about one sub-behavior (performance
 #' objective) is available as `abcd_specs_single_po`. The variables in the full
 #' dataset are:
