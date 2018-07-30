@@ -18,7 +18,7 @@
 #' ### Partial acyclic behavior change diagram of only
 #' ### one performance objective (sub-behavior)
 #' behaviorchange::abcd(abcd_specs_single_po);
-#' 
+#'
 #' ### Full acyclic behavior change diagram
 #' behaviorchange::abcd(abcd_specs_full);
 #'
@@ -92,7 +92,7 @@ abcd <- function(specs = NULL,
       stop("Did not manage to load the specifications!");
     }
 
-    datasheet <- read.csv(file, stringsAsFactors = FALSE);
+    datasheet <- utils::read.csv(file, stringsAsFactors = FALSE);
 
     if (!silent) {
       cat("Succesfully read the extraction script specifications from local files.\n");
@@ -102,11 +102,11 @@ abcd <- function(specs = NULL,
 
   ### Write local backup, if need be
   if (!is.null(localBackup)) {
-    write.csv(datasheet,
-              row.names=FALSE,
-              localBackup);
+    utils::write.csv(datasheet,
+                     row.names=FALSE,
+                     localBackup);
     if (!silent) {
-      cat0("Stored local backup to '", localBackup, "'.\n");
+      cat("Stored local backup to '", localBackup, "'.\n", sep="");
     }
   }
 
@@ -202,10 +202,16 @@ abcd <- function(specs = NULL,
                     list(behs = beh_ids));
   }
 
-  entity_names <- c('bcps', 'apps', 'sdts', 'dets', 'pobs');
+  node_names <- c('bcps', 'apps', 'sdts', 'dets', 'pobs');
+  edge_names <- c('bcp_app_edges',
+                  'app_sdt_edges',
+                  'sdt_det_edges',
+                  'det_pob_edges');
   if (includeBehavior) {
-    entity_names <- c(entity_names,
-                      'behs');
+    node_names <- c(node_names,
+                    'behs');
+    edge_names <- c(edge_names,
+                    'pob_beh_edges');
   }
 
   ### Create a datasheet with IDs instead of labels
@@ -227,6 +233,10 @@ abcd <- function(specs = NULL,
   if (includeBehavior) {
     pob_beh_edges <- unique(datasheet_ids[, 5:6]);
   }
+
+  ######################################################################
+  ### Start on the node data frames
+  ######################################################################
 
   nodeAttributes <- list(bcps = list(shape = 'box',
                                      color = "#000000",
@@ -250,38 +260,39 @@ abcd <- function(specs = NULL,
                                      style="rounded,filled"));
 
   if (includeBehavior) {
-    nodeAttributes <- c(nodeAttributes,
-                        list(behs = list(shape = 'box',
-                                         color = "#000000",
-                                         fillcolor = "#FFFFFF",
-                                         style="rounded,filled")));
+    nodeAttributes <-
+      c(nodeAttributes,
+        list(behs = list(shape = 'box',
+                         color = "#000000",
+                         fillcolor = "#FFFFFF",
+                         style="rounded,filled")));
   }
 
-  node_dfs <- lapply(entity_names,
-                     function(i) {
-                       return(DiagrammeR::create_node_df(n=length(entity_ids[[i]]),
-                                                         label=entity_labels[[i]],
-                                                         type=i,
-                                                         style=nodeAttributes[[i]]$style,
-                                                         color=nodeAttributes[[i]]$color,
-                                                         fillcolor=nodeAttributes[[i]]$fillcolor,
-                                                         fontcolor="#000000",
-                                                         fixedsize=FALSE,
-                                                         shape=nodeAttributes[[i]]$shape));
-                     });
-
-  colNames_node_df <-
-    list(DiagrammeR::create_node_df(n=length(col_ids),
-                                    label=colNames,
-                                    type="colName",
-                                    style="filled",
-                                    color="#FFFFFF",
-                                    fillcolor="#FFFFFF",
-                                    fontcolor="#000000",
-                                    fixedsize=FALSE,
-                                    shape="plaintext"));
+  node_dfs <-
+    lapply(node_names,
+           function(i) {
+             return(DiagrammeR::create_node_df(n=length(entity_ids[[i]]),
+                                               label=entity_labels[[i]],
+                                               type=i,
+                                               style=nodeAttributes[[i]]$style,
+                                               color=nodeAttributes[[i]]$color,
+                                               fillcolor=nodeAttributes[[i]]$fillcolor,
+                                               fontcolor="#000000",
+                                               fixedsize=FALSE,
+                                               shape=nodeAttributes[[i]]$shape));
+           });
 
   if (includeColNames) {
+    colNames_node_df <-
+      list(DiagrammeR::create_node_df(n=length(col_ids),
+                                      label=colNames,
+                                      type="colName",
+                                      style="filled",
+                                      color="#FFFFFF",
+                                      fillcolor="#FFFFFF",
+                                      fontcolor="#000000",
+                                      fixedsize=FALSE,
+                                      shape="plaintext"));
     final_nodeDf <- do.call(DiagrammeR::combine_ndfs,
                             c(colNames_node_df,
                               node_dfs));
@@ -289,6 +300,10 @@ abcd <- function(specs = NULL,
     final_nodeDf <- do.call(DiagrammeR::combine_ndfs,
                             node_dfs);
   }
+
+  ######################################################################
+  ### Start on the edge data frames
+  ######################################################################
 
   edges_from <- c(bcp_app_edges[, 1],
                   app_sdt_edges[, 1],
@@ -299,36 +314,90 @@ abcd <- function(specs = NULL,
                 sdt_det_edges[, 2],
                 det_pob_edges[, 2]);
 
+  edges_from <- list(bcp_app_edges = bcp_app_edges[, 1],
+                     app_sdt_edges = app_sdt_edges[, 1],
+                     sdt_det_edges = sdt_det_edges[, 1],
+                     det_pob_edges = det_pob_edges[, 1]);
+  edges_to <- list(bcp_app_edges = bcp_app_edges[, 2],
+                   app_sdt_edges = app_sdt_edges[, 2],
+                   sdt_det_edges = sdt_det_edges[, 2],
+                   det_pob_edges = det_pob_edges[, 2]);
+
   if (includeBehavior) {
     edges_from <- c(edges_from,
                     pob_beh_edges[, 1]);
     edges_to <- c(edges_to,
                   pob_beh_edges[, 2]);
+    edges_from <- c(edges_from,
+                    list(pob_beh_edges = pob_beh_edges[, 1]));
+    edges_to <- c(edges_to,
+                  list(pob_beh_edges = pob_beh_edges[, 2]));
   }
 
-  if (includeColNames) {
-    final_edgeDf <-
-      DiagrammeR::combine_edfs(DiagrammeR::create_edge_df(1:(useCols-1),
-                                                          2:useCols,
-                                                          color = "#FFFFFF"),
-                               DiagrammeR::create_edge_df(edges_from,
-                                                          edges_to,
-                                                          color = "#000000"));
-  } else {
-    final_edgeDf <- DiagrammeR::create_edge_df(edges_from,
-                                               edges_to,
-                                               color = "#000000");
+  ### Set edge attributes so they can be different
+  ### for the edges from and to different types of nodes
+  edgeAttributes <-
+    list(bcp_app_edges = list(arrowhead = 'icurve',
+                              label=letters[seq_along(edges_to$bcp_app_edges)],
+                              tooltip="The parameters for use have to be explained separately",
+                              color = "#000000"),
+         app_sdt_edges = list(arrowhead = 'normal',
+                              label="",
+                              tooltip="Influence",
+                              color = "#000000"),
+         sdt_det_edges = list(arrowhead = 'dot',
+                              label="",
+                              tooltip="Is a part of",
+                              color = "#000000"),
+         det_pob_edges = list(arrowhead = 'normal',
+                              label="",
+                              tooltip="Influences",
+                              color = "#000000"));
+
+  ### If the ABCD includes both PO's and behavior, add
+  ### the edges to the behavior
+  if (includeBehavior) {
+    edgeAttributes <-
+      c(edgeAttributes,
+        list(pob_beh_edges = list(arrowhead = 'dot',
+                                  label="",
+                                  tooltip="Is a part of",
+                                  color = "#000000")));
   }
+
+  edge_dfs <-
+    lapply(edge_names,
+           function(i) {
+             return(DiagrammeR::create_edge_df(from=edges_from[[i]],
+                                               to=edges_to[[i]],
+                                               label=edgeAttributes[[i]]$label,
+                                               tooltip=edgeAttributes[[i]]$tooltip,
+                                               arrowhead=edgeAttributes[[i]]$arrowhead,
+                                               color=edgeAttributes[[i]]$color));
+           });
+
+  if (includeColNames) {
+    colNames_edge_df <-
+      list(DiagrammeR::create_edge_df(from=1:(useCols-1),
+                                      to=2:useCols,
+                                      color = "#FFFFFF"));
+    final_edgeDf <- do.call(DiagrammeR::combine_edfs,
+                            c(colNames_edge_df,
+                              edge_dfs));
+  } else {
+    final_edgeDf <- do.call(DiagrammeR::combine_edfs,
+                            edge_dfs);
+  }
+
+  ######################################################################
+  ### Create final graph, set attributes, and return the result
+  ######################################################################
 
   res$output$graph <-
     DiagrammeR::create_graph(nodes_df = final_nodeDf,
                              edges_df = final_edgeDf,
                              graph_name = title);
 
-  # res$output$graph <-
-  #   add_global_graph_attrs(res$output$graph,
-  #                          "overlap",
-  #                          FALSE, "graph");
   res$output$graph <-
     DiagrammeR::add_global_graph_attrs(res$output$graph,
                                        "layout",
@@ -368,9 +437,31 @@ print.abcdiagram <- function(x, ...) {
         ...);
 }
 
-# require(userfriendlyscience);
-# require(googlesheets);
-# require(DiagrammeR);
+#' Two simple example datasets for ABCD's
+#'
+#' This are two (nested) datasets illustrating the logic model of change for
+#' a simple condom use intervention in a way that can be visualised using
+#' the `abcd` function. The full dataset is `abcd_specs_full`, and a subset
+#' that only contains the information about one sub-behavior (performance
+#' objective) is available as `abcd_specs_single_po`. The variables in the full
+#' dataset are:
+#'
+#' * `Behavior Change Principles`: The behavior change principles (BCPs), also known as methods for behavior change or 'behavior change techniques' (BCTs), that describe the psychological principles that are assumed to realise the change in the (sub-)determinants.
+#' * `Applications`: The applications of these BCPs. Where the BCPs describe theoretical principles, the applications are more or less tangible intervention elements.
+#' * `Sub-determinants\\n(e.g. beliefs; can be formulated as Change Objectives)`: The specific aspects of teh target population's psychology that are targeted by the BCPs (e.g. beliefs, or in Intervention Mapping vocabulary, Change Objectives).
+#' * `Determinants`: The determinants, psychological constructs, that the targeted sub-determinants are a part of, and that together predict the Performance Objectives (sub-behaviors).
+#' * `Performance Objectives`: Explicitly defined sub-behaviors at a level of specificity that distinguishes them from other sub-behaviors, and that together form the target behavior.
+#' * `Target Behavior`: The ultimate target behavior, usually defined at a relatively general level.
+#'
+#' @docType data
+#' @aliases abcd_specs_full abcd_specs_single_po
+#' @keywords data
+#' @name abcd_specs_examples
+#' @usage data(abcd_specs_full)
+#' @usage data(abcd_specs_single_po)
+#' @format For `abcd_specs_full`, a data frame with 6 variables and 7 rows;
+#' for `abcd_specs_single_po`, a data frame with 5 variables and 4 rows.
+c("abcd_specs_single_po", "abcd_specs_full");
 
 # abcd_specs_single_po <-
 #   data.frame(c("Social comparison",
@@ -393,7 +484,7 @@ print.abcdiagram <- function(x, ...) {
 #                "Negotiate condom use",
 #                "Negotiate condom use",
 #                "Negotiate condom use"));
-# 
+#
 # abcd_specs_full <-
 #   data.frame(c("Persuasive communication",
 #                "Persuasive communication",
@@ -438,7 +529,7 @@ print.abcdiagram <- function(x, ...) {
 #                "Condom use",
 #                "Condom use"),
 #              stringsAsFactors = FALSE);
-# 
+#
 # names(abcd_specs_full) <-
 #   c('Behavior Change Principles',
 #     'Applications',
@@ -448,7 +539,7 @@ print.abcdiagram <- function(x, ...) {
 #     'Target Behavior');
 # names(abcd_specs_single_po) <-
 #   names(abcd_specs_full)[1:5];
-# 
+#
 # devtools::use_data(abcd_specs_full, abcd_specs_single_po);
 
 # abcd_full <- abcd(specs=c("https://docs.google.com/spreadsheets/d/13VE1_1Oa38CidDDbiuIw7ZP8DIJ2qzs_i8wlJ63YuMI",
