@@ -24,7 +24,7 @@
 #'
 #' @export
 
-abcd <- function(specs = NULL,
+abcd <- function(specs,
                  localBackup = NULL,
                  title = "Acyclic Behavior Change Diagram\n\n",
                  outputFile = NULL,

@@ -4,7 +4,7 @@
 \alias{abcd}
 \title{Acyclic Behavior Change Diagram}
 \usage{
-abcd(specs = NULL, localBackup = NULL,
+abcd(specs, localBackup = NULL,
   title = "Acyclic Behavior Change Diagram\\n\\n", outputFile = NULL,
   outputWidth = 3000, outputHeight = 1500, includeColNames = TRUE,
   maxLabelLength = 30, silent = FALSE)
