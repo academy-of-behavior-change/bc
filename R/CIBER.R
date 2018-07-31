@@ -11,7 +11,7 @@
 #' Details are explained in Crutzen & Peters (2017).
 #'
 #' @aliases CIBER detStructCIBER
-#' @param data,dat The dataframe containing the variables.
+#' @param data The dataframe containing the variables.
 #' @param determinants The 'determinants': the predictors (or 'covariates') of
 #' the target variables(s) (or 'criteria').
 #' @param targets The 'targets' or 'criteria' variables: the variables
@@ -100,29 +100,23 @@
 #' @return Depending on the value of \code{returnPlotOnly}, either the plot
 #' only (a \code{\link{gtable}} object) or an object containing most objects
 #' created along the way (in which case the plot is stored in
-#' \code{$output$bla}).
+#' \code{$output$plot}).
 #'
 #' The plot has \code{width} and \code{height} attributes which can be used
 #' when saving the plot.
-#' @author Gjalt-Jorn Peters
-#'
-#' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{biAxisDiamondPlot}},
-#' \code{\link{associationsDiamondPlot}}, \code{\link{determinantStructure}}
+#' @seealso \code{\link{determinantStructure}}
 #' @references Crutzen, R., Peters, G.-J. Y., & Noijen, J. (2017). How to
 #' Select Relevant Social-Cognitive Determinants and Use them in the
 #' Development of Behaviour Change Interventions? Confidence Interval-Based
 #' Estimation of Relevance. http://dx.doi.org/
 #' @keywords hplot
-#' @examples
-#'
-#' CIBER(data=mtcars,
+#' @examples CIBER(data=mtcars,
 #'       determinants=c('drat', 'wt', 'am',
 #'                      'gear', 'vs', 'carb'),
 #'       targets=c('mpg', 'cyl'));
 #'
-#' @export CIBER
-#' @importFrom ufs `%IN%`
+#' @export
+#' @importFrom ufs "%IN%"
 CIBER <- function(data,
                   determinants,
                   targets,
@@ -352,7 +346,7 @@ CIBER <- function(data,
 
   res$intermediate$assocPlot <- ggplot2::ggplot() +
     res$intermediate$assocLayers +
-    ggplot2::theme +
+    theme +
     ggplot2::xlab(paste0(round(100 * conf.level$associations, 2), '% CIs of associations')) +
     ggplot2::scale_x_continuous(limits=c(-1,1)) +
     ggplot2::scale_y_continuous(breaks=yMajor) +
