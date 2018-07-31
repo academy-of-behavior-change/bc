@@ -11,9 +11,12 @@ License: GPL (>= 3)
 Description: Contains specialised analyses and
     visualisation tools for behavior change science.
     These facilitate conducting determinant studies
-    and systematically developing, reporting, and
-    analysing interventions. This package is
-    especially useful for researchers in the field of
+    (for example, for confidence interval-based
+    estimation of relevance) and systematically
+    developing, reporting, and analysing
+    interventions (for example, acyclic behavior
+    change diagrames). This package is especially
+    useful for researchers in the field of
     behavior change or health psychology and to
     behavior change professionals such as intervention
     developers and prevention workers.
@@ -31,5 +34,5 @@ Imports: data.tree (>= 0.7.5),
          gridExtra (>= 2.3),
          gtable (>= 0.2.0),
          ufs (>= 0.0.1),
-         userfriendlyscience (>= 0.7.2),
+         userfriendlyscience (>= 0.7.1),
          viridis (>= 0.5.1)
