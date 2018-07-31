@@ -1,18 +1,22 @@
 Package: behaviorchange
 Type: Package
-Title: Tools for behavior change researchers and professionals
+Title: Tools for Behavior Change Researchers and Professionals
 Version: 0.0.1
 Date: 2018-08-01
 Authors@R: c(person("Gjalt-Jorn", "Peters",
-                    email = "gjalt-jorn@userfriendlyscience.com",
+                    email = "gjalt-jorn@a-bc.eu",
                     role = c("aut", "cre", "ctb")))
 Maintainer: Gjalt-Jorn Peters <gjalt-jorn@a-bc.eu>
 License: GPL (>= 3)
-Description: This package is useful for both researchers in the field of
-    behavior change or health psychology and for behavior change
-    professionals (intervention developers, prevention workers, etc). It
-    contains functions to facilitate doing determinant studies and to
-    systematically develop, report, and analyse interventions.
+Description: Contains specialised analyses and
+    visualisation tools for behavior change science.
+    These facilitate conducting determinant studies
+    and systematically developing, reporting, and
+    analysing interventions. This package is
+    especially useful for researchers in the field of
+    behavior change or health psychology and to
+    behavior change professionals such as intervention
+    developers and prevention workers.
 URL: https://a-bc.eu
 BugReports: https://github.com/academy-of-behavior-change/behaviorchange/issues
 Encoding: UTF-8
@@ -20,4 +24,12 @@ LazyData: true
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.0.0)
-Imports: DiagrammeR, googlesheets, utils
+Imports: data.tree (>= 0.7.5),
+         DiagrammeR (>= 1.0.0),
+         ggplot2 (>= 2.2.1),
+         googlesheets (>= 0.3.0),
+         gridExtra (>= 2.3),
+         gtable (>= 0.2.0),
+         ufs (>= 0.0.1),
+         userfriendlyscience (>= 0.7.2),
+         viridis (>= 0.5.1)
