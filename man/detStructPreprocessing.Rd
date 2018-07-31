@@ -130,9 +130,4 @@ mean(detStudyPlus$rUse_Determinant);
 \code{\link{subdeterminants}}, \code{\link{subdeterminantProducts}},
 \code{\link{detStructCIBER}}
 }
-\author{
-Gjalt-Jorn Peters
-
-Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
-}
 \keyword{utilities}

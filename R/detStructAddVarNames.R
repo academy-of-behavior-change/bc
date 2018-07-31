@@ -51,14 +51,12 @@
 #' either the dataframe with the new variables appended (if \code{append} =
 #' \code{TRUE}) or just a dataframe with the new variables (if \code{append} =
 #' \code{FALSE}).
-#' @author Gjalt-Jorn Peters
-#'
-#' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
 #' @seealso \code{\link{determinantStructure}}, \code{\link{determinantVar}},
 #' \code{\link{subdeterminants}}, \code{\link{subdeterminantProducts}},
 #' \code{\link{detStructCIBER}}
 #' @references (Forthcoming)
 #' @keywords utilities
+#' @export
 #' @name detStructPreprocessing
 #' @rdname detStructPreprocessing
 #' @examples ### Create some bogus determinant data
