@@ -319,14 +319,15 @@ CIBER <- function(data,
   builtMeansPlot <-
     ggplot2::ggplot_build(res$intermediate$biAxisDiamondPlot$intermediate$meansPlot);
   yMajor <- builtMeansPlot$layout$panel_ranges[[1]]$y.major_source;
-  yRange <- range(builtMeansPlot$layout$panel_ranges[[1]]$y.range);
+
+  ### Note to self: this changes in ggplot2 3.0; used to be stored in
+  ###   builtMeansPlot$layout$panel_ranges[[1]]$y.range
+  yRange <- range(builtMeansPlot$layout$panel_scales_y[[1]]$range$range);
 
   if (length(targets)==1) {
     strokeColors <- "#000000";
-  } else {
-    ### brewer.pal(12, 'Set1')
-    strokeColors <- c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",
-                      "#FFFF33", "#A65628", "#F781BF", "#999999")[1:length(targets)];
+  } else if (is.null(strokeColors)) {
+    strokeColors <- viridis::viridis(length(targets));
   }
   names(strokeColors) <- targets;
 
