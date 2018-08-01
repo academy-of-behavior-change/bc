@@ -47,13 +47,9 @@ detStructComputeScales <- function(determinantStructure,
                              return(x$type == 'determinantVar');
                            });
 
-  print(names(data));
-
   nameSelection <- c(names(data), names(scalables));
 
   data <- ufs::makeScales(data, scalables);
-
-  print(nameSelection);
 
   if (append) {
     return(data[, nameSelection]);
