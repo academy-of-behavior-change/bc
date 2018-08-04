@@ -165,11 +165,12 @@ determinants of behavior.
 Details are explained in Crutzen & Peters (2017).
 }
 \examples{
+\dontrun{
 CIBER(data=mtcars,
       determinants=c('drat', 'wt', 'am',
                      'gear', 'vs', 'carb'),
       targets=c('mpg', 'cyl'));
-
+}
 }
 \references{
 Crutzen, R., Peters, G.-J. Y., & Noijen, J. (2017). How to

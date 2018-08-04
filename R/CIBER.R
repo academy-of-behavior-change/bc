@@ -110,11 +110,13 @@
 #' Development of Behaviour Change Interventions? Confidence Interval-Based
 #' Estimation of Relevance. http://dx.doi.org/
 #' @keywords hplot
-#' @examples CIBER(data=mtcars,
+#' @examples
+#' \dontrun{
+#' CIBER(data=mtcars,
 #'       determinants=c('drat', 'wt', 'am',
 #'                      'gear', 'vs', 'carb'),
 #'       targets=c('mpg', 'cyl'));
-#'
+#' }
 #' @export
 #' @importFrom ufs "%IN%"
 CIBER <- function(data,
