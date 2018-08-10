@@ -109,7 +109,7 @@ abcd <- function(specs,
     datasheet <- utils::read.csv(file, stringsAsFactors = FALSE);
 
     if (!silent) {
-      cat("Succesfully read the extraction script specifications from local files.\n");
+      cat("Succesfully read the ABCD specifications from local files.\n");
     }
 
   }
