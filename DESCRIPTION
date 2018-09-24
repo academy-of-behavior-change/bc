@@ -2,7 +2,7 @@ Package: behaviorchange
 Type: Package
 Title: Tools for Behavior Change Researchers and Professionals
 Version: 0.0.2
-Date: 2018-08-06
+Date: 2018-09-25
 Authors@R: c(person("Gjalt-Jorn", "Peters",
                     email = "gjalt-jorn@a-bc.eu",
                     role = c("aut", "cre", "ctb")))
