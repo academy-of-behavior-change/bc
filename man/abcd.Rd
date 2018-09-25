@@ -18,7 +18,8 @@ or a matrix or data frame}
 
 \item{specCols}{The order of the columns. This character vector
 specified the order of the elements of an ABCD. In the default
-order, from left to right, these are:
+order, from left to right, these are (see below for definitions
+and more details):
 \itemize{
 \item \code{bcps} = \strong{Behavior Change Principles (BCPs)};
 \item \code{cnds} = \strong{Conditions for effectiveness};
@@ -172,5 +173,6 @@ behavior change: introducing the Acyclic Behavior Change
 Diagram to report and analyze interventions.
 }
 \author{
-Gjalt-Jorn Peters, \email{gjalt-jorn@a-bc.eu}
+Gjalt-Jorn Peters, \email{gjalt-jorn@a-bc.eu}, with
+contributions from Matti Heino.
 }

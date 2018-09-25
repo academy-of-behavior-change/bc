@@ -78,7 +78,8 @@
 #'   or a matrix or data frame
 #' @param specCols The order of the columns. This character vector
 #'   specified the order of the elements of an ABCD. In the default
-#'   order, from left to right, these are:
+#'   order, from left to right, these are (see below for definitions
+#'    and more details):
 #'   - `bcps` = **Behavior Change Principles (BCPs)**;
 #'   - `cnds` = **Conditions for effectiveness**;
 #'   - `apps` = **Applications**;
@@ -111,7 +112,9 @@
 #' @return A list consisting of an `input`, `intermediate`, and
 #'   `output` list, where the ABCD is stored in the `output` list
 #'   as `graph`.
-#' @author Gjalt-Jorn Peters, \email{gjalt-jorn@@a-bc.eu}
+#' @author
+#'   Gjalt-Jorn Peters, \email{gjalt-jorn@@a-bc.eu}, with
+#'   contributions from Matti Heino.
 #' @references
 #'   Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary
 #'   learning processes as the foundation for behaviour change.
@@ -240,16 +243,16 @@ abcd <- function(specs,
 
   res$intermediate$datasheet <-
     datasheet <-
-    lapply(datasheet,
-           function(column) {
-             for (i in seq_along(regExReplacements)) {
-               column <- gsub(regExReplacements[[i]][1],
-                              regExReplacements[[i]][2],
-                              column);
-             }
-             return(column);
-           }) %>%
-    as.data.frame(stringsAsFactors=FALSE);
+    as.data.frame(lapply(datasheet,
+                         function(column) {
+                           for (i in seq_along(regExReplacements)) {
+                             column <- gsub(regExReplacements[[i]][1],
+                                            regExReplacements[[i]][2],
+                                            column);
+                            }
+                            return(column);
+                          }),
+                  stringsAsFactors=FALSE);
 
   ### Get number of columns with data
   useCols <- ncol(datasheet);
@@ -270,8 +273,8 @@ abcd <- function(specs,
 
   ### If this is not a complete ABCD specification,
   ### omit the required number of columns
-  usedCols <- setdiff(specCols, head(omitColOrder,
-                                     length(specCols) - useCols));
+  usedCols <- setdiff(specCols, utils::head(omitColOrder,
+                                            length(specCols) - useCols));
 
   ### Process column names; first get them from the list of
   ### original column names, omitting the column for conditions

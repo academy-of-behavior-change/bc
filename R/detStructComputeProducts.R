@@ -12,7 +12,7 @@ detStructComputeProducts <- function(determinantStructure,
 
   if (getOption('ufs.debug', FALSE)) {
     message("Debugging message:\n  Extracted the following products to compute:\n",
-            paste0(capture.output(str(multiplicables)), collapse="\n"), "\n");
+            paste0(utils::capture.output(utils::str(multiplicables)), collapse="\n"), "\n");
   }
 
   ### Remove those that don't occur in both lists
@@ -32,7 +32,7 @@ detStructComputeProducts <- function(determinantStructure,
 
   if (getOption('ufs.debug', FALSE)) {
     message("Debugging message:\n  After checking for product elements that did not occur in the list, these remained:\n",
-            paste0(capture.output(str(actualMultiplicables)), collapse="\n"), "\n");
+            paste0(utils::capture.output(utils::str(actualMultiplicables)), collapse="\n"), "\n");
   }
 
   ### Copy dataframe, but drop all variables
