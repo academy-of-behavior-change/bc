@@ -8,7 +8,9 @@ detStructAddVarLabels <- function(determinantStructure,
                                   subQuestionCol = 'subQuestions',
                                   questionTextCol = 'questionText') {
 
-  data.tree::Do(nodes=list(determinantStructure),
+  data.tree::Do(nodes=data.tree::Traverse(determinantStructure,
+                                          traversal = 'level',
+                                          filterFun = function(x) return(!is.null(x$varNames))),
                 fun=function(currentNode) {
     if (currentNode$type == 'subdeterminantProducts') {
       ### Look at $varNames[[1]] - check which ones occur in
@@ -31,6 +33,6 @@ detStructAddVarLabels <- function(determinantStructure,
                                                 unlist(currentNode$varNames),
                                               questionTextCol];
     }
-  }, traversal = 'level', filterFun = function(x) return(!is.null(x$varNames)));
+  });
 
 }

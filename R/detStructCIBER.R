@@ -26,7 +26,10 @@ detStructCIBER <- function(determinantStructure,
                            theme=ggplot2::theme_bw(base_size=baseFontSize),
                            ...) {
 
-  data.tree::Do(nodes=list(determinantStructure),
+  data.tree::Do(nodes=data.tree::Traverse(determinantStructure,
+                                          traversal = 'level', filterFun = function(x)
+                                            return((x$type=="subdeterminants") ||
+                                                     (x$type=="subdeterminantProducts"))),
                 fun=function(currentNode) {
 
     varNames <- data.tree::Get(nodes=list(currentNode),
@@ -90,9 +93,6 @@ detStructCIBER <- function(determinantStructure,
                             baseFontSize=baseFontSize,
                             theme=theme,
                             ...);
-  }, traversal = 'level', filterFun = function(x)
-    return((x$type=="subdeterminants") ||
-           (x$type=="subdeterminantProducts"))
-  );
+  });
 
 }
