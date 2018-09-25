@@ -17,10 +17,9 @@ curfnfinder <- function(skipframes=0,
     return(paste(rev(prefix), collapse = "|"));
   } else {
     res <- as.character(unlist(prefix[1]));
+    res <- unlist(lapply(res, gsub, pattern=".*::", replacement=""));
     if (length(prefix) > 1) {
       res <- paste(paste(rep(extraPrefPerLevel, length(prefix) - 1), collapse=""), res, sep="");
-    } else {
-      res <- gsub(".*::", "", res);
     }
     return(res);
   }
