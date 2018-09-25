@@ -55,7 +55,8 @@ detStructComputeProducts <- function(determinantStructure,
               ufs::vecTxtQ(newNames), "\n");
     }
 
-    determinantStructure$Do(function(currentNode) {
+    data.tree::Do(nodes=list(determinantStructure),
+                  fun=function(currentNode) {
       currentNode$productVarNames <- newNames;
     }, filterFun = function(x) return(x$name==productIdentifier));
 

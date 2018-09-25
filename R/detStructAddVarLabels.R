@@ -8,7 +8,8 @@ detStructAddVarLabels <- function(determinantStructure,
                                   subQuestionCol = 'subQuestions',
                                   questionTextCol = 'questionText') {
 
-  determinantStructure$Do(function(currentNode) {
+  data.tree::Do(nodes=list(determinantStructure),
+                fun=function(currentNode) {
     if (currentNode$type == 'subdeterminantProducts') {
       ### Look at $varNames[[1]] - check which ones occur in
       ### the list of productVarNames; then select the corresponding

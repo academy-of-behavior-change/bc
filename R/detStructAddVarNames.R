@@ -108,7 +108,8 @@ detStructAddVarNames <- function(determinantStructure,
 
   ### Walk through the determinant structure and select the
   ### matching variable names, adding the to the structure
-  determinantStructure$Do(function(currentNode, allNames = allNms) {
+  data.tree::Do(nodes=list(determinantStructure),
+                fun=function(currentNode, allNames = allNms) {
     if (is.list(currentNode$selection)) {
       currentNode$varNames <- sapply(currentNode$selection,
                                      function(x) {

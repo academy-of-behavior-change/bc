@@ -26,7 +26,8 @@ detStructCIBER <- function(determinantStructure,
                            theme=ggplot2::theme_bw(base_size=baseFontSize),
                            ...) {
 
-  determinantStructure$Do(function(currentNode) {
+  data.tree::Do(nodes=list(determinantStructure),
+                fun=function(currentNode) {
 
     varNames <- data.tree::Get(nodes=list(currentNode),
                                attribute='name',
