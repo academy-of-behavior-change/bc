@@ -34,6 +34,7 @@ Imports: data.tree (>= 0.7.5),
          gridExtra (>= 2.3),
          gtable (>= 0.2.0),
          magrittr (>= 0.1.5),
+         methods,
          ufs (>= 0.0.1),
          userfriendlyscience (>= 0.7.1),
          viridis (>= 0.5.1)
