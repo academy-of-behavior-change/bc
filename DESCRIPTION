@@ -20,7 +20,7 @@ Description: Contains specialised analyses and
     behavior change or health psychology and to
     behavior change professionals such as intervention
     developers and prevention workers.
-URL: https://a-bc.eu
+URL: https://a-bc.eu/R/behaviorchange
 BugReports: https://github.com/academy-of-behavior-change/behaviorchange/issues
 Encoding: UTF-8
 LazyData: true
