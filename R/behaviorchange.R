@@ -13,3 +13,6 @@
 #' developers and prevention workers.
 #' @keywords internal
 "_PACKAGE"
+
+#' @importFrom methods setClass setGeneric setMethod setRefClass
+NULL
