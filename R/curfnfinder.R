@@ -13,14 +13,14 @@ curfnfinder <- function(skipframes=0,
   prefix <- gsub("function \\(.*", "do.call", prefix);
   if(length(prefix)==0) {
     return(retIfNone);
-  }
-  else if(retStack) {
+  } else if(retStack) {
     return(paste(rev(prefix), collapse = "|"));
-  }
-  else {
+  } else {
     res <- as.character(unlist(prefix[1]));
     if (length(prefix) > 1) {
       res <- paste(paste(rep(extraPrefPerLevel, length(prefix) - 1), collapse=""), res, sep="");
+    } else {
+      res <- gsub(".*::", "", res);
     }
     return(res);
   }

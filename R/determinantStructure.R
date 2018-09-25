@@ -75,6 +75,8 @@ determinantStructure <-
 
     type <- behaviorchange:::curfnfinder();
 
+    print(type);
+
     res <- list(name = name,
                 type = type);
 
