@@ -95,7 +95,7 @@ detStructAddVarNames <- function(determinantStructure,
                                  names) {
 
   ### Get all behaviorRegExes that are set (should only be one)
-  behaviorRegEx <- data.tree::Get(nodes=Traverse(determinantStructure),
+  behaviorRegEx <- data.tree::Get(nodes=list(determinantStructure),
                                   attribute='behaviorRegEx',
                                   traversal='level',
                                   filterFun=function(x) return(!is.null(x$behaviorRegEx)));
