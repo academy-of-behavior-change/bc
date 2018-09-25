@@ -73,7 +73,7 @@ determinantStructure <-
            selection = NULL,
            ...) {
 
-    type <- curfnfinder();
+    type <- behaviorchange:::curfnfinder();
 
     res <- list(name = name,
                 type = type);
