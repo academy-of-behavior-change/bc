@@ -15,7 +15,7 @@ detStructComputeScales <- function(determinantStructure,
 
   ### Get behavior regex
   ### Get all behaviorRegExes that are set (should only be one)
-  behaviorRegEx <- data.tree::Get(nodes=data.tree::Traversal(determinantStructure,
+  behaviorRegEx <- data.tree::Get(nodes=data.tree::Traverse(determinantStructure,
                                                             traversal='level',
                                                             filterFun=function(x) return(!is.null(x$behaviorRegEx))),
                                   attribute='behaviorRegEx');
