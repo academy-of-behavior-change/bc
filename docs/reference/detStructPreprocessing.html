@@ -229,20 +229,21 @@ paper.</p>
                      <span class='st'>'rUse_expAtt2'</span>);
 
 <span class='co'>### Specify the determinant structure</span>
-<span class='no'>detStruct</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='determinantStructure.html'>determinantStructure</a></span>(<span class='st'>'Behavior'</span>,
-                                  <span class='fu'>list</span>(<span class='st'>'behav'</span>,
+<span class='no'>detStruct</span> <span class='kw'>&lt;-</span>
+  <span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/determinantStructure'>determinantStructure</a></span>(<span class='st'>'Behavior'</span>,
+                                       <span class='fu'>list</span>(<span class='st'>'behav'</span>,
                                        <span class='kw'>behaviorRegEx</span> <span class='kw'>=</span> <span class='st'>'rUse'</span>),
-                                  <span class='fu'><a href='determinantStructure.html'>determinantVar</a></span>(<span class='st'>"ProximalDeterminant"</span>,
-                                                 <span class='st'>"intention"</span>,
-                                                 <span class='fu'><a href='determinantStructure.html'>determinantVar</a></span>(<span class='st'>"Determinant"</span>,
-                                                                <span class='st'>"attitude"</span>,
-                                                                <span class='fu'><a href='determinantStructure.html'>subdeterminants</a></span>(<span class='st'>"Subdeterminants"</span>,
-                                                                                <span class='st'>"expAtt"</span>))));
+                                       <span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/determinantStructure'>determinantVar</a></span>(<span class='st'>"ProximalDeterminant"</span>,
+                                                                      <span class='st'>"intention"</span>,
+                                                                      <span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/determinantStructure'>determinantVar</a></span>(<span class='st'>"Determinant"</span>,
+                                                                                                     <span class='st'>"attitude"</span>,
+                                                                                                     <span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/determinantStructure'>subdeterminants</a></span>(<span class='st'>"Subdeterminants"</span>,
+                                                                                                                                     <span class='st'>"expAtt"</span>))));
 
 <span class='co'>### Add the variable names</span>
-<span class='fu'>detStructAddVarNames</span>(<span class='no'>detStruct</span>, <span class='fu'>names</span>(<span class='no'>detStudy</span>));</div><div class='output co'>#&gt; <span class='error'>Error in detStructAddVarNames(detStruct, names(detStudy)): attempt to apply non-function</span></div><div class='input'>
+<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/detStructPreprocessing'>detStructAddVarNames</a></span>(<span class='no'>detStruct</span>, <span class='fu'>names</span>(<span class='no'>detStudy</span>));</div><div class='output co'>#&gt; <span class='error'>Error in behaviorchange::detStructAddVarNames(detStruct, names(detStudy)): attempt to apply non-function</span></div><div class='input'>
 <span class='co'>### Add the determinant scale variable to the dataframe</span>
-<span class='no'>detStudyPlus</span> <span class='kw'>&lt;-</span> <span class='fu'>detStructComputeScales</span>(<span class='no'>detStruct</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>detStudy</span>);</div><div class='output co'>#&gt; <span class='error'>Error in detStructComputeScales(detStruct, data = detStudy): The first argument must be a determinant structure object!</span></div><div class='input'>
+<span class='no'>detStudyPlus</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'>detStructComputeScales</span>(<span class='no'>detStruct</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>detStudy</span>);</div><div class='output co'>#&gt; <span class='error'>Error in behaviorchange::detStructComputeScales(detStruct, data = detStudy): The first argument must be a determinant structure object!</span></div><div class='input'>
 <span class='co'>### Show its presence</span>
 <span class='fu'>names</span>(<span class='no'>detStudyPlus</span>);</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'detStudyPlus' not found</span></div><div class='input'><span class='fu'>mean</span>(<span class='no'>detStudyPlus</span>$<span class='no'>rUse_Determinant</span>);</div><div class='output co'>#&gt; <span class='error'>Error in mean(detStudyPlus$rUse_Determinant): object 'detStudyPlus' not found</span></div><div class='input'>
 </div></pre>

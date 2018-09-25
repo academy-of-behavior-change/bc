@@ -5,10 +5,12 @@ detStructComputeProducts <- function(determinantStructure,
                                      append = TRUE) {
 
   ### Get all variables names of all 'product halves'
-  multiplicables <- determinantStructure$Get("varNames", traversal='level',
-                                             filterFun=function(x) {
-                                               return(x$type == 'subdeterminantProducts');
-                                             }, simplify=FALSE);
+  multiplicables <- data.tree::Get(nodes=list(determinantStructure),
+                                   attribute="varNames",
+                                   traversal='level',
+                                   filterFun=function(x) {
+                                     return(x$type == 'subdeterminantProducts');
+                                   }, simplify=FALSE);
 
   if (getOption('ufs.debug', FALSE)) {
     message("Debugging message:\n  Extracted the following products to compute:\n",

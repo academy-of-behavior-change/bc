@@ -15,9 +15,10 @@ detStructComputeScales <- function(determinantStructure,
 
   ### Get behavior regex
   ### Get all behaviorRegExes that are set (should only be one)
-  behaviorRegEx <- determinantStructure$Get('behaviorRegEx',
-                                            traversal='level',
-                                            filterFun=function(x) return(!is.null(x$behaviorRegEx)));
+  behaviorRegEx <- data.tree::Get(node=list(determinantStructure),
+                                  attribute='behaviorRegEx',
+                                  traversal='level',
+                                  filterFun=function(x) return(!is.null(x$behaviorRegEx)));
 
   ### Remove any duplicates and select the first one in case there are more
   behaviorRegEx <- unique(behaviorRegEx);
@@ -30,10 +31,12 @@ detStructComputeScales <- function(determinantStructure,
   behaviorRegEx <- behaviorRegEx[1];
 
   ### Get all variables names of all 'product halves'
-  scalables <- determinantStructure$Get("varNames", traversal='level',
-                                        filterFun=function(x) {
-                                          return(x$type == 'determinantVar');
-                                        }, simplify=FALSE);
+  scalables <- data.tree::Get(nodes=list(determinantStructure),
+                              attribute="varNames",
+                              traversal='level',
+                              filterFun=function(x) {
+                                return(x$type == 'determinantVar');
+                              }, simplify=FALSE);
 
   ### Remove superfluous level in between
   scalables <- lapply(scalables, unlist);

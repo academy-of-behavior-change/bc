@@ -59,7 +59,8 @@
 #' @export
 #' @name detStructPreprocessing
 #' @rdname detStructPreprocessing
-#' @examples ### Create some bogus determinant data
+#' @examples
+#' ### Create some bogus determinant data
 #' detStudy <- mtcars[, c(1, 3:7)];
 #' names(detStudy) <- c('rUse_behav',
 #'                      'rUse_intention',
@@ -69,21 +70,22 @@
 #'                      'rUse_expAtt2');
 #'
 #' ### Specify the determinant structure
-#' detStruct <- determinantStructure('Behavior',
-#'                                   list('behav',
+#' detStruct <-
+#'   behaviorchange::determinantStructure('Behavior',
+#'                                        list('behav',
 #'                                        behaviorRegEx = 'rUse'),
-#'                                   determinantVar("ProximalDeterminant",
-#'                                                  "intention",
-#'                                                  determinantVar("Determinant",
-#'                                                                 "attitude",
-#'                                                                 subdeterminants("Subdeterminants",
-#'                                                                                 "expAtt"))));
+#'                                        behaviorchange::determinantVar("ProximalDeterminant",
+#'                                                                       "intention",
+#'                                                                       behaviorchange::determinantVar("Determinant",
+#'                                                                                                      "attitude",
+#'                                                                                                      behaviorchange::subdeterminants("Subdeterminants",
+#'                                                                                                                                      "expAtt"))));
 #'
 #' ### Add the variable names
-#' detStructAddVarNames(detStruct, names(detStudy));
+#' behaviorchange::detStructAddVarNames(detStruct, names(detStudy));
 #'
 #' ### Add the determinant scale variable to the dataframe
-#' detStudyPlus <- detStructComputeScales(detStruct, data=detStudy);
+#' detStudyPlus <- behaviorchange::detStructComputeScales(detStruct, data=detStudy);
 #'
 #' ### Show its presence
 #' names(detStudyPlus);
@@ -93,9 +95,10 @@ detStructAddVarNames <- function(determinantStructure,
                                  names) {
 
   ### Get all behaviorRegExes that are set (should only be one)
-  behaviorRegEx <- determinantStructure$Get('behaviorRegEx',
-                                            traversal='level',
-                                            filterFun=function(x) return(!is.null(x$behaviorRegEx)));
+  behaviorRegEx <- data.tree::Get(nodes=list(determinantStructure),
+                                  attribute='behaviorRegEx',
+                                  traversal='level',
+                                  filterFun=function(x) return(!is.null(x$behaviorRegEx)));
 
   ### Remove any duplicates and select the first one in case there are more
   behaviorRegEx <- unique(behaviorRegEx)[1];

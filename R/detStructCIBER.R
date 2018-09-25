@@ -28,13 +28,16 @@ detStructCIBER <- function(determinantStructure,
 
   determinantStructure$Do(function(currentNode) {
 
-    varNames <- currentNode$Get('name', traversal='ancestor',
-                                filterFun=function(x)
+    varNames <- data.tree::Get(nodes=list(currentNode),
+                               attribute='name',
+                               traversal='ancestor',
+                               filterFun=function(x)
                                   return(x$type=='determinantVar'));
 
-    scaleVarNames <- currentNode$Get('scaleVarName', traversal='ancestor',
-                                     filterFun=function(x)
-                                       return(x$type=='determinantVar'));
+    scaleVarNames <- data.tree::Get(list(currentNode),
+                                    'scaleVarName', traversal='ancestor',
+                                    filterFun=function(x)
+                                      return(x$type=='determinantVar'));
 
     targets <-
       ufs::ifelseObj(is.null(scaleVarNames),

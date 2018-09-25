@@ -101,21 +101,22 @@ names(detStudy) <- c('rUse_behav',
                      'rUse_expAtt2');
 
 ### Specify the determinant structure
-detStruct <- determinantStructure('Behavior',
-                                  list('behav',
+detStruct <-
+  behaviorchange::determinantStructure('Behavior',
+                                       list('behav',
                                        behaviorRegEx = 'rUse'),
-                                  determinantVar("ProximalDeterminant",
-                                                 "intention",
-                                                 determinantVar("Determinant",
-                                                                "attitude",
-                                                                subdeterminants("Subdeterminants",
-                                                                                "expAtt"))));
+                                       behaviorchange::determinantVar("ProximalDeterminant",
+                                                                      "intention",
+                                                                      behaviorchange::determinantVar("Determinant",
+                                                                                                     "attitude",
+                                                                                                     behaviorchange::subdeterminants("Subdeterminants",
+                                                                                                                                     "expAtt"))));
 
 ### Add the variable names
-detStructAddVarNames(detStruct, names(detStudy));
+behaviorchange::detStructAddVarNames(detStruct, names(detStudy));
 
 ### Add the determinant scale variable to the dataframe
-detStudyPlus <- detStructComputeScales(detStruct, data=detStudy);
+detStudyPlus <- behaviorchange::detStructComputeScales(detStruct, data=detStudy);
 
 ### Show its presence
 names(detStudyPlus);
