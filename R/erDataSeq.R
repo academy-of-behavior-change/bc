@@ -17,10 +17,10 @@ erDataSeq <- function(er = NULL, threshold = NULL, mean = NULL, sd = NULL,
            "you must also provide me with the mean and the standard ",
            "deviation!");
     }
-    er <- convert.threshold.to.er(threshold = threshold,
-                                  mean = mean,
-                                  sd = sd,
-                                  eventIfHigher = eventIfHigher);
+    er <- behaviorchange::convert.threshold.to.er(threshold = threshold,
+                                                  mean = mean,
+                                                  sd = sd,
+                                                  eventIfHigher = eventIfHigher);
   } else if (is.null(threshold)) {
     if (is.null(mean) && is.null(sd)) {
       mean <- 0;
@@ -30,10 +30,10 @@ erDataSeq <- function(er = NULL, threshold = NULL, mean = NULL, sd = NULL,
     } else if (is.null(sd)) {
       stop("If providing an event rate (er) and a mean value, you must also provide a standard deviation!");
     }
-    threshold <- ufs::convert.er.to.threshold(er,
-                                              mean = mean,
-                                              sd = sd,
-                                              eventIfHigher = eventIfHigher);
+    threshold <- behaviorchange::convert.er.to.threshold(er,
+                                                         mean = mean,
+                                                         sd = sd,
+                                                         eventIfHigher = eventIfHigher);
   }
 
   ### Get range from where to where to generate values
