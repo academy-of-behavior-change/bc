@@ -1,10 +1,22 @@
 #' Numbers Needed for Change
 #'
 #' This function computes the Numbers Needed for Change, and shows a
-#' visualisation to illustrate them. \code{nnt} is an alias for \code{nnc}.
+#' visualisation to illustrate them. Numbers Needed for Change is
+#' the name for a Numbers Needed to Treat estimate that was computed
+#' for a continuous outcome as is common in behavior change research.
 #'
-#' This function computes the Numbers Needed for Change. See Gruijters & Peters
-#' (2017) for details.
+#' Numbers Needed to Treat is a common and very useful effect size
+#' measure in use in the medical sciences. It is computed based on the
+#' Control Event Rate (CER) and the Experimental Event Rate (EER), and
+#' expresses how many people would need to received a treatment to yield
+#' a beneficial result for one person. In behavior change research, a
+#' similar measure would be useful, but the outcome is normally not
+#' dichotomous as is common in the medical literature (i.e. whether a
+#' participants survives or is cured), but continuous. Numbers Needed
+#' for Change fills this lacuna: it is simply the Numbers Needed to Treat,
+#' but converted from a Cohen's d value. \code{nnt} is an alias for \code{nnc}.
+#'
+#' For more details, see Gruijters & Peters (2018) for details.
 #'
 #' @aliases nnc nnt
 #' @param d The value of Cohen's \emph{d}.
@@ -32,6 +44,11 @@
 #' @param eventIfHigher Whether scores above or below the threshold are
 #' considered 'an event'.
 #' @param conf.level The confidence level of the confidence interval.
+#' @param dReliability If Cohen's d was not measured with perfect reliability,
+#' `nnc` can disattenuate it to correct for the resulting attenuation using
+#' [ufs::disattenuate.d()] before computating the Experimental Event Rate. Use
+#' this argument to specify the reliability of the outcome measure. By default,
+#' the setting of 1 means that no disattenuation is applied.
 #' @param d.ci Instead of providing a point estimate for Cohen's \emph{d}, a
 #' confidence interval can be provided.
 #' @param cer.ci Instead of providing a point estimate for the Control Event
@@ -73,7 +90,7 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
                        threshold = NULL, mean = 0, sd = 1,
                        poweredFor = NULL, thresholdSensitivity = NULL,
                        eventDesirable = TRUE, eventIfHigher = TRUE,
-                       conf.level=.95,
+                       conf.level=.95, dReliability = 1,
                        d.ci = NULL, cer.ci = NULL, r.ci=NULL,
                        d.n = NULL, cer.n = NULL, r.n = NULL, plot = TRUE,
                        returnPlot = TRUE, silent=FALSE) {
@@ -115,6 +132,9 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
   }
 
   if (!is.null(r.ci) && (r == 1)) r <- NULL;
+
+  ### Disattenuate Cohen's d
+  d <- ufs::disattenuate.d(d, dReliability);
 
   ### Compute CER if it was not specified
   if (is.null(cer) && !is.null(threshold)) {
