@@ -135,6 +135,9 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
 
   ### Disattenuate Cohen's d
   d <- ufs::disattenuate.d(d, dReliability);
+  if (!is.null(d.ci)) {
+    d <- ufs::disattenuate.d(d.ci, dReliability);
+  }
 
   ### Compute CER if it was not specified
   if (is.null(cer) && !is.null(threshold)) {
