@@ -111,32 +111,29 @@ detStructAddVarNames <- function(determinantStructure,
   ### matching variable names, adding the to the structure
   data.tree::Do(nodes=data.tree::Traverse(determinantStructure,
                                           traversal = 'level',
-                                          filterFun = function(x) return(!is.null(data.tree::Get(list(x),
-                                                                                                 attribute='selection')))),
+                                          filterFun = function(x) {
+                                            return(!is.null(x$selection))}),
                 fun=function(currentNode, allNames = allNms) {
-    if (is.list(data.tree::Get(nodes=list(currentNode),
-                               attribute='selection'))) {
-      data.tree::Set(nodes=list(currentNode),
-                     varNames = sapply(currentNode$selection,
-                                       function(x) {
-                                         res <- sapply(x,
-                                                       grep,
-                                                       allNames,
-                                                       value=TRUE,
-                                                       simplify=FALSE);
-                                         names(res) <- allNames;
-                                         return(res);
-                                       },
-                                       simplify=FALSE));
-      names(currentNode$varNames) <- data.tree::Get(nodes=list(currentNode),
-                                                    attribute='selection');
+
+    if (is.list(currentNode$selection)) {
+      currentNode$varNames <-
+        sapply(currentNode$selection,
+               function(x) {
+                 res <- sapply(x,
+                               grep,
+                               allNames,
+                               value=TRUE,
+                               simplify=FALSE);
+                 names(res) <- allNames;
+                 return(res);
+               },
+               simplify=FALSE);
+      names(currentNode$varNames) <- currentNode$selection;
     } else {
-      data.tree::Set(nodes=list(currentNode),
-                     varNames = sapply(data.tree::Get(nodes=list(currentNode),
-                                                      attribute='selection'),
-                                       grep, allNames, value=TRUE, simplify=FALSE));
-      names(currentNode$varNames) <- data.tree::Get(nodes=list(currentNode),
-                                                    attribute='selection');
+      currentNode$varNames <-
+        sapply(currentNode$selection,
+               grep, allNames, value=TRUE, simplify=FALSE);
+      names(currentNode$varNames) <- currentNode$selection;
     }
   });
 

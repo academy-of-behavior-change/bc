@@ -5,12 +5,15 @@ detStructComputeProducts <- function(determinantStructure,
                                      append = TRUE) {
 
   ### Get all variables names of all 'product halves'
-  multiplicables <- data.tree::Get(nodes=list(determinantStructure),
-                                   attribute="varNames",
-                                   traversal='level',
-                                   filterFun=function(x) {
-                                     return(x$type == 'subdeterminantProducts');
-                                   }, simplify=FALSE);
+  multiplicables <-
+    data.tree::Get(nodes=data.tree::Traverse(determinantStructure,
+                                             traversal='level',
+                                             filterFun=function(x) {
+                                               return(!is.null(x$type) &&
+                                                        isTRUE(x$type == 'subdeterminantProducts'));
+                                             }),
+                   attribute="varNames",
+                   simplify=FALSE);
 
   if (getOption('ufs.debug', FALSE)) {
     message("Debugging message:\n  Extracted the following products to compute:\n",
@@ -55,10 +58,13 @@ detStructComputeProducts <- function(determinantStructure,
               ufs::vecTxtQ(newNames), "\n");
     }
 
-    data.tree::Do(nodes=data.tree::Traverse(determinantStructure),
+    data.tree::Do(nodes=data.tree::Traverse(determinantStructure,
+                                            filterFun=function(x) {
+                                              return(x$name==productIdentifier);
+                                            }),
                   fun=function(currentNode) {
       currentNode$productVarNames <- newNames;
-    }, filterFun = function(x) return(x$name==productIdentifier));
+    });
 
     ### Loop through the product halves and compute and store the products
     for (i in 1:length(actualMultiplicables[[currentSetIndex]][[1]])) {
