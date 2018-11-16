@@ -339,7 +339,7 @@ print.nnc <- function(x, digits=2, ...) {
     cer <- attr(x, 'cer');
     cerStatement <- paste0("a Control Event Rate (CER) of ", ufs::formatR(cer));
   } else {
-    cer <- formatCI(sort(attr(x, 'cer.ci')), noZero=TRUE);
+    cer <- ufs::formatCI(sort(attr(x, 'cer.ci')), noZero=TRUE);
     cerStatement <- paste0("a Control Event Rate (CER) with a confidence interval of ",
                            cer);
   }
@@ -383,11 +383,11 @@ print.nnc <- function(x, digits=2, ...) {
     nnc <- x;
   }
 
-  cat0("\n",
-       attr(x, 'numbersNeededTitle'),
-       ": ", nnc, "\n\n",
-       "(Based on ", cerStatement,
-       eerStatement, dStatement, rStatement, ".)\n");
+  ufs::cat0("\n",
+            attr(x, 'numbersNeededTitle'),
+            ": ", nnc, "\n\n",
+            "(Based on ", cerStatement,
+            eerStatement, dStatement, rStatement, ".)\n");
 
   if (!is.null(attr(x, 'sensitivityDf'))) {
     cat("\nSensitivity analysis to easily compare the effect of choosing ",
