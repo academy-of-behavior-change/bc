@@ -310,6 +310,8 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
                                                             mean=mean,
                                                             sd=sd,
                                                             eventIfHigher=eventIfHigher),
+                                  plotTitle = c(paste0(numbersNeededTitle, " = "),
+                                                ""),
                                   eventDesirable = eventDesirable,
                                   d=d, r=r);
     if (returnPlot) {
