@@ -95,7 +95,7 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
                        d.n = NULL, cer.n = NULL, r.n = NULL, plot = TRUE,
                        returnPlot = TRUE, silent=FALSE) {
 
-  numbersNeededTitle <- ifesle(curfnfinder() == "nnt",
+  numbersNeededTitle <- ifelse(curfnfinder() == "nnt",
                                "Numbers needed to treat",
                                "Numbers needed for change");
 
