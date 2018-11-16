@@ -20,6 +20,12 @@ detStructAddVarLabels <- function(determinantStructure,
       currentNode$rightAnchors <- rep('hi', length(currentNode$productVarNames));
       currentNode$subQuestions <- currentNode$productVarNames;
     } else {
+
+      if (getOption('ufs.debug', FALSE)) {
+        message("Debugging message:\n  Found ",
+                ufs::vecTxtQ(unlist(currentNode$varNames)), ".\n");
+      }
+
       currentNode$leftAnchors <- varLabelDf[varLabelDf[, varNameCol] %in%
                                               unlist(currentNode$varNames),
                                             leftAnchorCol];

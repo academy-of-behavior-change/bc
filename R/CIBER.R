@@ -254,7 +254,8 @@ CIBER <- function(data,
   }
 
   if (getOption('ufs.debug', FALSE)) {
-    print(paste0("\nnames(res$intermediate$dat) = ",
+    message(paste0("\nDebugging message:\n",
+                   "\nnames(res$intermediate$dat) = ",
                  ufs::vecTxtQ(names(res$intermediate$dat)),
                  "\ndeterminants = ", ufs::vecTxtQ(determinants),
                  "\ntargets = ", ufs::vecTxtQ(targets),

@@ -95,6 +95,10 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
                        d.n = NULL, cer.n = NULL, r.n = NULL, plot = TRUE,
                        returnPlot = TRUE, silent=FALSE) {
 
+  numbersNeededTitle <- ifesle(curfnfinder() == "nnt",
+                               "Numbers needed to treat",
+                               "Numbers needed for change");
+
   if (is.null(d)) {
     stop("You have to provide an estimate for Cohen's d (argument 'd'). If you do not have ",
          "a Cohen's d estimate, instead use convert.d.to.t (see ?convert.d.to.t for the ",
@@ -316,6 +320,8 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
     }
   }
 
+  attr(res, 'numbersNeededTitle') <- numbersNeededTitle;
+
   class(res) <- c('nnc', class(res));
 
   return(res);
@@ -349,11 +355,11 @@ print.nnc <- function(x, digits=2, ...) {
 
   if (is.null(attr(x, 'd.ci'))) {
     d <- attr(x, 'd');
-    dStatement <- paste0(" and a Cohen's d of ", d);
+    dStatement <- paste0(" and a Cohen's d of ", round(d, digits));
   } else {
     d <- ufs::formatCI(sort(attr(x, 'd.ci')));
     dStatement <- paste0(" and a Cohen's d with a confidence interval of ",
-                         d);
+                         round(d, digits));
   }
 
   if (is.null(attr(x, 'r.ci'))) {
@@ -378,7 +384,8 @@ print.nnc <- function(x, digits=2, ...) {
   }
 
   cat0("\n",
-       "Numbers Needed for Change: ", nnc, "\n\n",
+       attr(x, 'numbersNeededTitle'),
+       ": ", nnc, "\n\n",
        "(Based on ", cerStatement,
        eerStatement, dStatement, rStatement, ".)\n");
 
