@@ -66,6 +66,9 @@
 #' @param returnPlot Whether to return the plot (as an attribute), or to only
 #' display it.
 #' @param silent Whether to suppress notifications.
+#' @param x The `nnc` object to print.
+#' @param digits The number of digits to round to.
+#' @param ... Any additional arguments are passed to the `print` function.
 #' @return The Numbers Needed for Change (NNC), potentially with a plot
 #' visualising the NNC in an attribute.
 #' @author Gjalt-Jorn Peters & Stefan Gruijters
@@ -84,6 +87,8 @@
 #' ### intervention effective (therefore having a negative value for d):
 #' nnc(d=-.4, cer=.3, eventDesirable=FALSE);
 #'
+#' @name nnc
+#' @rdname nnc
 #' @export nnc
 #' @export nnt
 nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
@@ -258,10 +263,10 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
                            cer * n[2], (1-cer) * n[2]),
                          byrow=TRUE, ncol=2);
     epiResult <-
-    behaviorchange::from_epiR_epi.2by2(dat = dataMatrix,
-                                       method = "cohort.count",
-                                       conf.level = conf.level,
-                                       units = 1);
+      from_epiR_epi.2by2(dat = dataMatrix,
+                         method = "cohort.count",
+                         conf.level = conf.level,
+                         units = 1);
 
     ### Lifted from https://cran.r-project.org/web/packages/RcmdrPlugin.EBM/
     #.ARR.est <- 0-epiResult$rval$AR$est
@@ -291,20 +296,20 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
     if (is.null(d)) {
       d <- mean(d.ci);
       if (!silent)
-        cat0("Warning: no point estimate for Cohen's d supplied, so using the simple mean ",
-             "of the lower and upper confidence interval bounds (", round(d, 2), ") for the plot!\n");
+        ufs::cat0("Warning: no point estimate for Cohen's d supplied, so using the simple mean ",
+                  "of the lower and upper confidence interval bounds (", round(d, 2), ") for the plot!\n");
     }
     if (is.null(cer)) {
       cer <- mean(cer.ci);
       if (!silent)
-        cat0("Warning: no point estimate for the CER supplied, so using the simple mean ",
-             "of the lower and upper confidence interval bounds (", ufs::formatR(cer), ") for the plot!\n");
+        ufs::cat0("Warning: no point estimate for the CER supplied, so using the simple mean ",
+                  "of the lower and upper confidence interval bounds (", ufs::formatR(cer), ") for the plot!\n");
     }
     if (is.null(r)) {
       r <- mean(r.ci);
       if (!silent)
-        cat0("Warning: no point estimate for the correlation supplied, so using the simple mean ",
-             "of the lower and upper confidence interval bounds (", ufs::formatR(r), ") for the plot!\n");
+        ufs::cat0("Warning: no point estimate for the correlation supplied, so using the simple mean ",
+                  "of the lower and upper confidence interval bounds (", ufs::formatR(r), ") for the plot!\n");
     }
 
     plot <- behaviorchange::ggNNC(behaviorchange::erDataSeq(er=cer,
@@ -331,7 +336,7 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
 
 }
 
-#' @export print.nnc
+#' @rdname nnc
 #' @method print nnc
 print.nnc <- function(x, digits=2, ...) {
   if (!is.null(attr(x, 'plot'))) {
@@ -369,7 +374,7 @@ print.nnc <- function(x, digits=2, ...) {
   if (is.null(attr(x, 'r.ci'))) {
     r <- attr(x, 'r');
     if (r < 1) {
-      rStatement <- paste0(", and assuming a correlation of ", formatR(r),
+      rStatement <- paste0(", and assuming a correlation of ", ufs::formatR(r),
                            " between the dependent measure and behavior");
     } else {
       rStatement <- "";

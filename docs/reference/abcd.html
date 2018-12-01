@@ -126,6 +126,7 @@ target population's psychology?).</p>
   <span class='kw'>localBackup</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Acyclic Behavior Change Diagram\n\n"</span>,
   <span class='kw'>outputFile</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outputWidth</span> <span class='kw'>=</span> <span class='fl'>3000</span>, <span class='kw'>outputHeight</span> <span class='kw'>=</span> <span class='fl'>1500</span>,
   <span class='kw'>includeColNames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>maxLabelLength</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>returnGraphOnly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>regExReplacements</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='fu'>c</span>(<span class='st'>"\\\""</span>, <span class='st'>"`"</span>), <span class='fu'>c</span>(<span class='st'>"\\'"</span>, <span class='st'>"`"</span>), <span class='fu'>c</span>(<span class='st'>"\\\\"</span>, <span class='st'>"/"</span>)))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -170,7 +171,7 @@ to a local backup</p></td>
     <tr>
       <th>outputFile</th>
       <td><p>If specified, the ABCD is written to
-this file.</p></td>
+this file using <a href='http://www.rdocumentation.org/packages/DiagrammeR/topics/export_graph'>DiagrammeR::export_graph</a>.</p></td>
     </tr>
     <tr>
       <th>outputWidth, outputHeight</th>
@@ -194,6 +195,11 @@ labels.</p></td>
 (<code>FALSE</code>) more detailed information.</p></td>
     </tr>
     <tr>
+      <th>returnGraphOnly</th>
+      <td><p>Whether to return the full results
+object or only the <a href='http://www.rdocumentation.org/packages/DiagrammeR/topics/DiagrammeR'>DiagrammeR::DiagrammeR</a> graph.</p></td>
+    </tr>
+    <tr>
       <th>regExReplacements</th>
       <td><p>A list of pairs of regular
 expressions that will be applied to the specifications
@@ -206,7 +212,7 @@ problematic characters (e.g. ', " and ).</p></td>
 
     <p>A list consisting of an <code>input</code>, <code>intermediate</code>, and
 <code>output</code> list, where the ABCD is stored in the <code>output</code> list
-as <code>graph</code>.</p>
+as a <a href='http://www.rdocumentation.org/packages/DiagrammeR/topics/DiagrammeR'>DiagrammeR::DiagrammeR</a> called <code>graph</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -275,17 +281,17 @@ performance objectives.</p></li>
 
     <p>Crutzen, R., &amp; Peters, G.-J. Y. (2018). Evolutionary
 learning processes as the foundation for behaviour change.
-Health Psychology Review, 12(1), 43–57.
+<em>Health Psychology Review,</em> 12(1), 43–57.
 https://doi.org/10.1080/17437199.2017.1362569</p>
 <p>Kok, G. (2014). A practical guide to effective behavior
 change: How to apply theory- and evidence-based behavior
-change methods in an intervention. European Health Psychologist,
+change methods in an intervention. <em>European Health Psychologist</em>,
 16(5), 156–170. https://doi.org/10.31234/osf.io/r78wh</p>
 <p>Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen,
 P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew,
 L. K. (2016). A taxonomy of behavior change methods:
-an Intervention Mapping approach. Health Psychology
-Review, 10(3), 297–312.
+an Intervention Mapping approach. <em>Health Psychology
+Review</em>, 10(3), 297–312.
 https://doi.org/10.1080/17437199.2015.1077155</p>
 <p>Peters, G.-J. Y., et al. (2019) The core of
 behavior change: introducing the Acyclic Behavior Change
@@ -295,10 +301,15 @@ Diagram to report and analyze interventions.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>### Partial acyclic behavior change diagram of only</span>
 <span class='co'>### one performance objective (sub-behavior)</span>
-<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd'>abcd</a></span>(<span class='no'>abcd_specs_single_po</span>);
+<span class='co'>### (using the 'abcd_specs_single_po_without_conditions'</span>
+<span class='co'>###  dataset in this package)</span>
+<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd'>abcd</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd_specs_examples'>abcd_specs_single_po_without_conditions</a></span>);
 
-<span class='co'>### Full acyclic behavior change diagram</span>
-<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd'>abcd</a></span>(<span class='no'>abcd_specs_full</span>);</div></pre>
+<span class='co'>### Acyclic behavior change diagram including multiple</span>
+<span class='co'>### sub-behaviors (performance objectives)</span>
+<span class='co'>### (using the 'abcd_specs_complete' dataset in this</span>
+<span class='co'>###  package)</span>
+<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd'>abcd</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd_specs_examples'>abcd_specs_complete</a></span>);</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -317,7 +328,7 @@ Diagram to report and analyze interventions.</p>
     <h2>Author</h2>
     
 Gjalt-Jorn Peters, <a href='mailto:gjalt-jorn@a-bc.eu'>gjalt-jorn@a-bc.eu</a>, with
-contributions from Matti Heino.
+contributions from Matti Heino and Sander Eggers.
 
   </div>
 </div>

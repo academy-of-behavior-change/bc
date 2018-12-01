@@ -3,6 +3,7 @@
 \name{nnc}
 \alias{nnc}
 \alias{nnt}
+\alias{print.nnc}
 \title{Numbers Needed for Change}
 \usage{
 nnc(d = NULL, cer = NULL, r = 1, n = NULL, threshold = NULL,
@@ -11,6 +12,8 @@ nnc(d = NULL, cer = NULL, r = 1, n = NULL, threshold = NULL,
   dReliability = 1, d.ci = NULL, cer.ci = NULL, r.ci = NULL,
   d.n = NULL, cer.n = NULL, r.n = NULL, plot = TRUE,
   returnPlot = TRUE, silent = FALSE)
+
+\method{print}{nnc}(x, digits = 2, ...)
 }
 \arguments{
 \item{d}{The value of Cohen's \emph{d}.}
@@ -81,6 +84,12 @@ sample size can be provided; if it is, the confidence interval is computed.}
 display it.}
 
 \item{silent}{Whether to suppress notifications.}
+
+\item{x}{The \code{nnc} object to print.}
+
+\item{digits}{The number of digits to round to.}
+
+\item{...}{Any additional arguments are passed to the \code{print} function.}
 }
 \value{
 The Numbers Needed for Change (NNC), potentially with a plot

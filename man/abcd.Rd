@@ -148,15 +148,15 @@ For details, see Peters et al. (2019).
 \examples{
 ### Partial acyclic behavior change diagram of only
 ### one performance objective (sub-behavior)
-### (using the 'abcd_specs_single_po' dataset in this
-###  package)
-behaviorchange::abcd(behaviorchange::abcd_specs_single_po);
+### (using the 'abcd_specs_single_po_without_conditions'
+###  dataset in this package)
+behaviorchange::abcd(behaviorchange::abcd_specs_single_po_without_conditions);
 
 ### Acyclic behavior change diagram including multiple
 ### sub-behaviors (performance objectives)
-### (using the 'abcd_specs_full' dataset in this
+### (using the 'abcd_specs_complete' dataset in this
 ###  package)
-#' behaviorchange::abcd(behaviorchange::abcd_specs_full);
+behaviorchange::abcd(behaviorchange::abcd_specs_complete);
 
 }
 \references{

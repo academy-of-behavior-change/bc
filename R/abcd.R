@@ -140,15 +140,15 @@
 #'   Diagram to report and analyze interventions.
 #' @examples ### Partial acyclic behavior change diagram of only
 #' ### one performance objective (sub-behavior)
-#' ### (using the 'abcd_specs_single_po' dataset in this
-#' ###  package)
-#' behaviorchange::abcd(behaviorchange::abcd_specs_single_po);
+#' ### (using the 'abcd_specs_single_po_without_conditions'
+#' ###  dataset in this package)
+#' behaviorchange::abcd(behaviorchange::abcd_specs_single_po_without_conditions);
 #'
 #' ### Acyclic behavior change diagram including multiple
 #' ### sub-behaviors (performance objectives)
-#' ### (using the 'abcd_specs_full' dataset in this
+#' ### (using the 'abcd_specs_complete' dataset in this
 #' ###  package)
-#' #' behaviorchange::abcd(behaviorchange::abcd_specs_full);
+#' behaviorchange::abcd(behaviorchange::abcd_specs_complete);
 #'
 #' @export
 
@@ -642,16 +642,21 @@ print.abcdiagram <- function(x, ...) {
         ...);
 }
 
-#' Two simple example datasets for ABCD's
+#' Three simple example datasets for ABCD's
 #'
-#' This are two (nested) datasets illustrating the logic model of change for
+#' This are three (nested) datasets illustrating the logic model of change for
 #' a simple condom use intervention in a way that can be visualised using
-#' the [abcd] function. The full dataset is `abcd_specs_full`, and a subset
-#' that only contains the information about one sub-behavior (performance
-#' objective) is available as `abcd_specs_single_po`. The variables in the full
+#' the [abcd] function. The full dataset is `abcd_specs_full`, a subset
+#' that does not explicitly include the conditions for effectiveness
+#' (instead showing letters that can then be explained in, for example,
+#' the manuscript text) is called `abcd_specs_without_conditions`, and
+#' a version that only contains the information about one sub-behavior
+#' (performance objective) is available as
+#' `abcd_specs_single_po_without_conditions`. The variables in the full
 #' dataset are:
 #'
 #' * `Behavior Change Principles`: The behavior change principles (BCPs), also known as methods for behavior change or 'behavior change techniques' (BCTs), that describe the psychological principles that are assumed to realise the change in the (sub-)determinants.
+#' * `Conditions for effectiveness\\n(e.g. parameters for use)`: The conditions for effectiveness that describe the constraints and considerations taken into account in the translation of the BCPs to practical applications for the relevant target population, context, culture, etc.
 #' * `Applications`: The applications of these BCPs. Where the BCPs describe theoretical principles, the applications are more or less tangible intervention elements.
 #' * `Sub-determinants\\n(e.g. beliefs; can be formulated as Change Objectives)`: The specific aspects of teh target population's psychology that are targeted by the BCPs (e.g. beliefs, or in Intervention Mapping vocabulary, Change Objectives).
 #' * `Determinants`: The determinants, psychological constructs, that the targeted sub-determinants are a part of, and that together predict the Performance Objectives (sub-behaviors).
