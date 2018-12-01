@@ -94,7 +94,7 @@
 #'   to a local backup
 #' @param title The title of the diagram
 #' @param outputFile If specified, the ABCD is written to
-#'   this file.
+#'   this file using [DiagrammeR::export_graph].
 #' @param outputWidth,outputHeight If an `outputFile` is
 #'   specified, these determine its width and height (in pixels)
 #' @param includeColNames Whether to include the column names
@@ -104,6 +104,8 @@
 #'   labels.
 #' @param silent Whether to suppress (`TRUE`) or show
 #'   (`FALSE`) more detailed information.
+#' @param returnGraphOnly Whether to return the full results
+#'   object or only the [DiagrammeR::DiagrammeR] graph.
 #' @param regExReplacements A list of pairs of regular
 #'   expressions that will be applied to the specifications
 #'   before generating the ABCD. This can be used to sanitize
@@ -111,26 +113,26 @@
 #'
 #' @return A list consisting of an `input`, `intermediate`, and
 #'   `output` list, where the ABCD is stored in the `output` list
-#'   as `graph`.
+#'   as a [DiagrammeR::DiagrammeR] called `graph`.
 #' @author
 #'   Gjalt-Jorn Peters, \email{gjalt-jorn@@a-bc.eu}, with
-#'   contributions from Matti Heino.
+#'   contributions from Matti Heino and Sander Eggers.
 #' @references
 #'   Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary
 #'   learning processes as the foundation for behaviour change.
-#'   Health Psychology Review, 12(1), 43–57.
+#'   *Health Psychology Review,* 12(1), 43–57.
 #'   https://doi.org/10.1080/17437199.2017.1362569
 #'
 #'   Kok, G. (2014). A practical guide to effective behavior
 #'   change: How to apply theory- and evidence-based behavior
-#'   change methods in an intervention. European Health Psychologist,
+#'   change methods in an intervention. *European Health Psychologist*,
 #'   16(5), 156–170. https://doi.org/10.31234/osf.io/r78wh
 #'
 #'   Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen,
 #'   P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew,
 #'   L. K. (2016). A taxonomy of behavior change methods:
-#'   an Intervention Mapping approach. Health Psychology
-#'   Review, 10(3), 297–312.
+#'   an Intervention Mapping approach. *Health Psychology
+#'   Review*, 10(3), 297–312.
 #'   https://doi.org/10.1080/17437199.2015.1077155
 #'
 #'   Peters, G.-J. Y., et al. (2019) The core of
@@ -138,10 +140,15 @@
 #'   Diagram to report and analyze interventions.
 #' @examples ### Partial acyclic behavior change diagram of only
 #' ### one performance objective (sub-behavior)
-#' behaviorchange::abcd(abcd_specs_single_po);
+#' ### (using the 'abcd_specs_single_po' dataset in this
+#' ###  package)
+#' behaviorchange::abcd(behaviorchange::abcd_specs_single_po);
 #'
-#' ### Full acyclic behavior change diagram
-#' behaviorchange::abcd(abcd_specs_full);
+#' ### Acyclic behavior change diagram including multiple
+#' ### sub-behaviors (performance objectives)
+#' ### (using the 'abcd_specs_full' dataset in this
+#' ###  package)
+#' #' behaviorchange::abcd(behaviorchange::abcd_specs_full);
 #'
 #' @export
 
@@ -156,6 +163,7 @@ abcd <- function(specs,
                  includeColNames = TRUE,
                  maxLabelLength = 30,
                  silent = FALSE,
+                 returnGraphOnly = FALSE,
                  regExReplacements = list(c("\\\"", "`"),
                                           c("\\'", "`"),
                                           c("\\\\", "/"))) {
@@ -586,23 +594,23 @@ abcd <- function(specs,
   ### Create final graph, set attributes, and return the result
   ######################################################################
 
-  res$output$graph <-
+  graph <-
     DiagrammeR::create_graph(nodes_df = final_nodeDf,
                              edges_df = final_edgeDf,
                              graph_name = title);
 
-  res$output$graph <-
+  graph <-
     DiagrammeR::add_global_graph_attrs(res$output$graph,
-                                       "layout",
-                                       "dot", "graph");
-  res$output$graph <-
+                                       "layout", "dot",
+                                       "graph");
+  graph <-
     DiagrammeR::add_global_graph_attrs(res$output$graph,
-                                       "rankdir",
-                                       "LR", "graph");
-  res$output$graph <-
+                                       "rankdir", "LR",
+                                       "graph");
+  graph <-
     DiagrammeR::add_global_graph_attrs(res$output$graph,
-                                       "outputorder",
-                                       "nodesfirst", "graph");
+                                       "outputorder", "nodesfirst",
+                                       "graph");
 
   if (!is.null(outputFile)) {
     for (currentFile in outputFile) {
@@ -615,9 +623,13 @@ abcd <- function(specs,
     }
   }
 
-  class(res) <- "abcdiagram";
-
-  return(res);
+  if (returnGraphOnly) {
+    return(graph);
+  } else {
+    res$output$graph <- graph;
+    class(res) <- "abcdiagram";
+    return(res);
+  }
 
 }
 

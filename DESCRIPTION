@@ -15,11 +15,11 @@ Description: Contains specialised analyses and
     estimation of relevance, CIBER, or CIBERlite
     plots) and systematically developing, reporting,
     and analysing interventions (for example, using
-    acyclic behavior change diagrams). This package
-    is especially useful for researchers in the field of
-    behavior change or health psychology and to
-    behavior change professionals such as intervention
-    developers and prevention workers.
+    acyclic behavior change diagrams or ABCDs). This
+    package is especially useful for researchers in
+    the field of behavior change or health psychology
+    and to behavior change professionals such as
+    intervention developers and prevention workers.
 URL: https://a-bc.eu/R/behaviorchange
 BugReports: https://github.com/academy-of-behavior-change/behaviorchange/issues
 Encoding: UTF-8
@@ -34,7 +34,7 @@ Imports: data.tree (>= 0.7.5),
          gridExtra (>= 2.3),
          gtable (>= 0.2.0),
          magrittr (>= 0.1.5),
-         methods,
+         methods (>= 3.0.0),
          ufs (>= 0.0.1),
          userfriendlyscience (>= 0.7.1),
          viridis (>= 0.5.1)
