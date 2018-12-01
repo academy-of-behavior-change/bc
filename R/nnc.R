@@ -257,10 +257,11 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
     dataMatrix <- matrix(c(eer.est * n[1], (1-eer.est) * n[1],
                            cer * n[2], (1-cer) * n[2]),
                          byrow=TRUE, ncol=2);
-    epiResult <- ufs::from_epiR_epi.2by2(dat = dataMatrix,
-                                         method = "cohort.count",
-                                         conf.level = conf.level,
-                                         units = 1);
+    epiResult <-
+    behaviorchange::from_epiR_epi.2by2(dat = dataMatrix,
+                                       method = "cohort.count",
+                                       conf.level = conf.level,
+                                       units = 1);
 
     ### Lifted from https://cran.r-project.org/web/packages/RcmdrPlugin.EBM/
     #.ARR.est <- 0-epiResult$rval$AR$est
@@ -331,6 +332,7 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
 }
 
 #' @export print.nnc
+#' @method print nnc
 print.nnc <- function(x, digits=2, ...) {
   if (!is.null(attr(x, 'plot'))) {
     grid::grid.newpage();
