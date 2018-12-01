@@ -3,13 +3,15 @@
 \docType{data}
 \name{abcd_specs_examples}
 \alias{abcd_specs_examples}
-\alias{abcd_specs_full}
-\alias{abcd_specs_single_po}
+\alias{abcd_specs_complete}
+\alias{abcd_specs_without_conditions}
+\alias{abcd_specs_single_po_without_conditions}
 \title{Two simple example datasets for ABCD's}
-\format{For \code{abcd_specs_full}, a data frame with 6 variables and 7 rows;
-for \code{abcd_specs_single_po}, a data frame with 5 variables and 4 rows.}
+\format{For \code{abcd_specs_complete}, a data frame with 7 variables and 7 rows;
+for \code{abcd_specs_without_conditions}, a data frame with 6 variables and 7 rows;
+for \code{abcd_specs_single_po_without_conditions}, a data frame with 5 variables and 4 rows;}
 \usage{
-data(abcd_specs_full)
+data(abcd_specs_complete)
 }
 \description{
 This are two (nested) datasets illustrating the logic model of change for

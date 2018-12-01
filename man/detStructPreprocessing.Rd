@@ -101,22 +101,38 @@ names(detStudy) <- c('rUse_behav',
                      'rUse_expAtt2');
 
 ### Specify the determinant structure
+
+### First a subdeterminant
+expAtt <-
+  behaviorchange::subdeterminants("Subdeterminants",
+                                  "expAtt");
+
+### Then two determinants
+attitude <-
+  behaviorchange::determinantVar("Determinant",
+                                 "attitude",
+                                 expAtt);
+
+intention <-
+  behaviorchange::determinantVar("ProximalDeterminant",
+                                 "intention",
+                                 attitude);
+
+### Then the entire determinant strcture
 detStruct <-
   behaviorchange::determinantStructure('Behavior',
                                        list('behav',
                                        behaviorRegEx = 'rUse'),
-                                       behaviorchange::determinantVar("ProximalDeterminant",
-                                                                      "intention",
-                                                                      behaviorchange::determinantVar("Determinant",
-                                                                                                     "attitude",
-                                                                                                     behaviorchange::subdeterminants("Subdeterminants",
-                                                                                                                                     "expAtt"))));
+                                       intention);
 
 ### Add the variable names
-behaviorchange::detStructAddVarNames(detStruct, names(detStudy));
+behaviorchange::detStructAddVarNames(detStruct,
+                                     names(detStudy));
 
 ### Add the determinant scale variable to the dataframe
-detStudyPlus <- behaviorchange::detStructComputeScales(detStruct, data=detStudy);
+detStudyPlus <-
+  behaviorchange::detStructComputeScales(detStruct,
+                                         data=detStudy);
 
 ### Show its presence
 names(detStudyPlus);

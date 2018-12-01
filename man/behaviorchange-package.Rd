@@ -13,11 +13,11 @@ These facilitate conducting determinant studies
 estimation of relevance, CIBER, or CIBERlite
 plots) and systematically developing, reporting,
 and analysing interventions (for example, using
-acyclic behavior change diagrams). This package
-is especially useful for researchers in the field of
-behavior change or health psychology and to
-behavior change professionals such as intervention
-developers and prevention workers.
+acyclic behavior change diagrams or ABCDs). This
+package is especially useful for researchers in
+the field of behavior change or health psychology
+and to behavior change professionals such as
+intervention developers and prevention workers.
 }
 \details{
 Contains specialised analyses and

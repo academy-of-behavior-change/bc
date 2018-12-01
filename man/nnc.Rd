@@ -8,8 +8,9 @@
 nnc(d = NULL, cer = NULL, r = 1, n = NULL, threshold = NULL,
   mean = 0, sd = 1, poweredFor = NULL, thresholdSensitivity = NULL,
   eventDesirable = TRUE, eventIfHigher = TRUE, conf.level = 0.95,
-  d.ci = NULL, cer.ci = NULL, r.ci = NULL, d.n = NULL, cer.n = NULL,
-  r.n = NULL, plot = TRUE, returnPlot = TRUE, silent = FALSE)
+  dReliability = 1, d.ci = NULL, cer.ci = NULL, r.ci = NULL,
+  d.n = NULL, cer.n = NULL, r.n = NULL, plot = TRUE,
+  returnPlot = TRUE, silent = FALSE)
 }
 \arguments{
 \item{d}{The value of Cohen's \emph{d}.}
@@ -49,6 +50,12 @@ considered 'an event'.}
 
 \item{conf.level}{The confidence level of the confidence interval.}
 
+\item{dReliability}{If Cohen's d was not measured with perfect reliability,
+\code{nnc} can disattenuate it to correct for the resulting attenuation using
+\code{\link[ufs:disattenuate.d]{ufs::disattenuate.d()}} before computating the Experimental Event Rate. Use
+this argument to specify the reliability of the outcome measure. By default,
+the setting of 1 means that no disattenuation is applied.}
+
 \item{d.ci}{Instead of providing a point estimate for Cohen's \emph{d}, a
 confidence interval can be provided.}
 
@@ -81,11 +88,23 @@ visualising the NNC in an attribute.
 }
 \description{
 This function computes the Numbers Needed for Change, and shows a
-visualisation to illustrate them. \code{nnt} is an alias for \code{nnc}.
+visualisation to illustrate them. Numbers Needed for Change is
+the name for a Numbers Needed to Treat estimate that was computed
+for a continuous outcome as is common in behavior change research.
 }
 \details{
-This function computes the Numbers Needed for Change. See Gruijters & Peters
-(2017) for details.
+Numbers Needed to Treat is a common and very useful effect size
+measure in use in the medical sciences. It is computed based on the
+Control Event Rate (CER) and the Experimental Event Rate (EER), and
+expresses how many people would need to received a treatment to yield
+a beneficial result for one person. In behavior change research, a
+similar measure would be useful, but the outcome is normally not
+dichotomous as is common in the medical literature (i.e. whether a
+participants survives or is cured), but continuous. Numbers Needed
+for Change fills this lacuna: it is simply the Numbers Needed to Treat,
+but converted from a Cohen's d value. \code{nnt} is an alias for \code{nnc}.
+
+For more details, see Gruijters & Peters (2019) for details.
 }
 \examples{
 
@@ -98,9 +117,9 @@ nnc(d=-.4, cer=.3, eventDesirable=FALSE);
 
 }
 \references{
-Gruijters, S. L. K., & Peters, G.-J. Y. (2017). Introducing the
+Gruijters, S. L. K., & Peters, G.-J. Y. (2019). \emph{Introducing the
 Numbers Needed for Change (NNC): A practical measure of effect size for
-intervention research.
+intervention research.} PsyArXiv. doi:\href{https://doi.org/10.31234/osf.io/2bau7}{10.31234/osf.io/2bau7}
 }
 \author{
 Gjalt-Jorn Peters & Stefan Gruijters

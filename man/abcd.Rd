@@ -9,6 +9,7 @@ abcd(specs, specCols = c("bcps", "cnds", "apps", "sdts", "dets", "pobs",
   localBackup = NULL, title = "Acyclic Behavior Change Diagram\\n\\n",
   outputFile = NULL, outputWidth = 3000, outputHeight = 1500,
   includeColNames = TRUE, maxLabelLength = 30, silent = FALSE,
+  returnGraphOnly = FALSE,
   regExReplacements = list(c("\\\\\\"", "`"), c("\\\\'", "`"), c("\\\\\\\\", "/")))
 }
 \arguments{
@@ -40,7 +41,7 @@ to a local backup}
 \item{title}{The title of the diagram}
 
 \item{outputFile}{If specified, the ABCD is written to
-this file.}
+this file using \link[DiagrammeR:export_graph]{DiagrammeR::export_graph}.}
 
 \item{outputWidth, outputHeight}{If an \code{outputFile} is
 specified, these determine its width and height (in pixels)}
@@ -55,6 +56,9 @@ labels.}
 \item{silent}{Whether to suppress (\code{TRUE}) or show
 (\code{FALSE}) more detailed information.}
 
+\item{returnGraphOnly}{Whether to return the full results
+object or only the \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} graph.}
+
 \item{regExReplacements}{A list of pairs of regular
 expressions that will be applied to the specifications
 before generating the ABCD. This can be used to sanitize
@@ -63,7 +67,7 @@ problematic characters (e.g. ', " and ).}
 \value{
 A list consisting of an \code{input}, \code{intermediate}, and
 \code{output} list, where the ABCD is stored in the \code{output} list
-as \code{graph}.
+as a \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} called \code{graph}.
 }
 \description{
 This function generates an acyclic behavior change diagram (ABCD)
@@ -144,28 +148,33 @@ For details, see Peters et al. (2019).
 \examples{
 ### Partial acyclic behavior change diagram of only
 ### one performance objective (sub-behavior)
-behaviorchange::abcd(abcd_specs_single_po);
+### (using the 'abcd_specs_single_po' dataset in this
+###  package)
+behaviorchange::abcd(behaviorchange::abcd_specs_single_po);
 
-### Full acyclic behavior change diagram
-behaviorchange::abcd(abcd_specs_full);
+### Acyclic behavior change diagram including multiple
+### sub-behaviors (performance objectives)
+### (using the 'abcd_specs_full' dataset in this
+###  package)
+#' behaviorchange::abcd(behaviorchange::abcd_specs_full);
 
 }
 \references{
 Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary
 learning processes as the foundation for behaviour change.
-Health Psychology Review, 12(1), 43–57.
+\emph{Health Psychology Review,} 12(1), 43–57.
 https://doi.org/10.1080/17437199.2017.1362569
 
 Kok, G. (2014). A practical guide to effective behavior
 change: How to apply theory- and evidence-based behavior
-change methods in an intervention. European Health Psychologist,
+change methods in an intervention. \emph{European Health Psychologist},
 16(5), 156–170. https://doi.org/10.31234/osf.io/r78wh
 
 Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen,
 P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew,
 L. K. (2016). A taxonomy of behavior change methods:
-an Intervention Mapping approach. Health Psychology
-Review, 10(3), 297–312.
+an Intervention Mapping approach. \emph{Health Psychology
+Review}, 10(3), 297–312.
 https://doi.org/10.1080/17437199.2015.1077155
 
 Peters, G.-J. Y., et al. (2019) The core of
@@ -174,5 +183,5 @@ Diagram to report and analyze interventions.
 }
 \author{
 Gjalt-Jorn Peters, \email{gjalt-jorn@a-bc.eu}, with
-contributions from Matti Heino.
+contributions from Matti Heino and Sander Eggers.
 }

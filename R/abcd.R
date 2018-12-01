@@ -600,26 +600,26 @@ abcd <- function(specs,
                              graph_name = title);
 
   graph <-
-    DiagrammeR::add_global_graph_attrs(res$output$graph,
+    DiagrammeR::add_global_graph_attrs(graph,
                                        "layout", "dot",
                                        "graph");
   graph <-
-    DiagrammeR::add_global_graph_attrs(res$output$graph,
+    DiagrammeR::add_global_graph_attrs(graph,
                                        "rankdir", "LR",
                                        "graph");
   graph <-
-    DiagrammeR::add_global_graph_attrs(res$output$graph,
+    DiagrammeR::add_global_graph_attrs(graph,
                                        "outputorder", "nodesfirst",
                                        "graph");
 
   if (!is.null(outputFile)) {
     for (currentFile in outputFile) {
-      DiagrammeR::export_graph(res$output$graph,
+      DiagrammeR::export_graph(graph,
                                file_name = currentFile,
                                file_type = tools::file_ext(currentFile),
                                width=outputWidth,
                                height=outputHeight,
-                               title = DiagrammeR::get_graph_name(res$output$graph));
+                               title = DiagrammeR::get_graph_name(graph));
     }
   }
 
@@ -659,38 +659,20 @@ print.abcdiagram <- function(x, ...) {
 #' * `Target Behavior`: The ultimate target behavior, usually defined at a relatively general level.
 #'
 #' @docType data
-#' @aliases abcd_specs_full abcd_specs_single_po
+#' @aliases abcd_specs_complete abcd_specs_without_conditions abcd_specs_single_po_without_conditions
 #' @keywords data
 #' @name abcd_specs_examples
-#' @usage data(abcd_specs_full)
-#' @usage data(abcd_specs_single_po)
-#' @format For `abcd_specs_full`, a data frame with 6 variables and 7 rows;
-#' for `abcd_specs_single_po`, a data frame with 5 variables and 4 rows.
-c("abcd_specs_single_po", "abcd_specs_full");
+#' @usage data(abcd_specs_complete)
+#' @usage data(abcd_specs_without_conditions)
+#' @usage data(abcd_specs_single_po_without_conditions)
+#' @format For `abcd_specs_complete`, a data frame with 7 variables and 7 rows;
+#' for `abcd_specs_without_conditions`, a data frame with 6 variables and 7 rows;
+#' for `abcd_specs_single_po_without_conditions`, a data frame with 5 variables and 4 rows;
+c("abcd_specs_complete",
+  "abcd_specs_without_conditions",
+  "abcd_specs_single_po_without_conditions");
 
-# abcd_specs_single_po <-
-#   data.frame(c("Social comparison",
-#                "Persuasive communication",
-#                "Modeling",
-#                "Guided practice"),
-#              c("A chart showing percentage of people using condoms.",
-#                "Quotations from people expressing approval.",
-#                "A role model illustrates bringing up condoms in different settings.",
-#                "In a mini-game, target population individuals practice negotiation."),
-#              c("Most people use condoms.",
-#                "Most people approve of me suggesting to use condoms.",
-#                "It is easy for me to bring up condoms.",
-#                "If my partner is not enthusiastic, I know I can persuade them."),
-#              c("Perceived Norms",
-#                "Perceived Norms",
-#                "Self-efficacy",
-#                "Self-efficacy"),
-#              c("Negotiate condom use",
-#                "Negotiate condom use",
-#                "Negotiate condom use",
-#                "Negotiate condom use"));
-#
-# abcd_specs_full <-
+# abcd_specs_complete <-
 #   data.frame(c("Persuasive communication",
 #                "Persuasive communication",
 #                "Persuasive communication",
@@ -698,6 +680,13 @@ c("abcd_specs_single_po", "abcd_specs_full");
 #                "Persuasive communication",
 #                "Modeling",
 #                "Guided practice"),
+#              c("Research in this target population showed that infographics are perceived as trustworthy and are generally well-received.",
+#                "Research in this target population showed that infographics are perceived as trustworthy and are generally well-received.",
+#                "Showing such quotations yielded promising effects in a similar interventions in this population.",
+#                "Chart allow comparing percentages of people using condoms allow showing frequencies, which people can process better then probabilities.",
+#                "Showing such quotations yielded promising effects in a similar interventions in this population.",
+#                "We selected role models from the target populations, and the modeling scripts were developed to demonstrate strategies to deal with the most common scenarios.",
+#                "A mini-game allows for the desired interactivity, and this mini-game can piggy-back on coordinated efforts from this other campaign that people are doing."),
 #              c("An infographic explains how condoms work.",
 #                "An infographic explains how condoms work.",
 #                "Quotations from people expressing approval.",
@@ -735,32 +724,46 @@ c("abcd_specs_single_po", "abcd_specs_full");
 #                "Condom use"),
 #              stringsAsFactors = FALSE);
 #
-# names(abcd_specs_full) <-
+# names(abcd_specs_complete) <-
 #   c('Behavior Change Principles',
+#     'Conditions for effectiveness\n(e.g. parameters for use)',
 #     'Applications',
 #     'Sub-determinants\n(e.g. beliefs; can be formulated as Change Objectives)',
 #     'Determinants',
 #     'Performance Objectives',
 #     'Target Behavior');
-# names(abcd_specs_single_po) <-
-#   names(abcd_specs_full)[1:5];
 #
-# devtools::use_data(abcd_specs_full, abcd_specs_single_po);
-
-# abcd_complete <- abcd(specs=c("https://docs.google.com/spreadsheets/d/1U1j-VoiK3WmfveJ7VpUMY_H9WNXDh85a8jKbM67AQSI/edit?usp=sharing",
-#                               "C:/Sync/Data/statistics/R/library/tmp/abcd-complete.csv"),
-#                       localBackup="C:/Sync/Data/statistics/R/library/tmp/abcd-complete.csv",
-#                       outputFile=c("C:/Sync/Data/statistics/R/library/tmp/abcd-complete.svg",
-#                                    "C:/Sync/Data/statistics/R/library/tmp/abcd-complete.png"));
+# abcd_specs_without_conditions <-
+#   abcd_specs_complete[, c(1, 3:6)];
 #
-# abcd_full <- abcd(specs=c("https://docs.google.com/spreadsheets/d/13VE1_1Oa38CidDDbiuIw7ZP8DIJ2qzs_i8wlJ63YuMI",
-#                           "C:/Sync/Data/statistics/R/library/tmp/abcd-full.csv"),
-#                   localBackup="C:/Sync/Data/statistics/R/library/tmp/abcd-full.csv",
-#                   outputFile=c("C:/Sync/Data/statistics/R/library/tmp/abcd-full.svg",
-#                                "C:/Sync/Data/statistics/R/library/tmp/abcd-full.png"));
+# abcd_specs_single_po_without_conditions <-
+#   abcd_specs_complete[5:7, c(1, 3:6)];
 #
-# abcd_single_po <- abcd(specs=c("https://docs.google.com/spreadsheets/d/1ib4CJlWUYcShwwue8kXq2519tTefK6T-orLarhuk0q0",
-#                                "C:/Sync/Data/statistics/R/library/tmp/abcd-single-po.csv"),
-#                        localBackup="C:/Sync/Data/statistics/R/library/tmp/abcd-single-po.csv",
-#                        outputFile=c("C:/Sync/Data/statistics/R/library/tmp/abcd-single-po.svg",
-#                                     "C:/Sync/Data/statistics/R/library/tmp/abcd-single-po.png"));
+# names(abcd_specs_single_po_without_conditions)[5] <-
+#   'Behavior';
+#
+# devtools::use_data(abcd_specs_complete,
+#                    abcd_specs_without_conditions,
+#                    abcd_specs_single_po_without_conditions,
+#                    overwrite=TRUE);
+#
+# abcd_complete <-
+#   abcd(specs=c("https://docs.google.com/spreadsheets/d/1U1j-VoiK3WmfveJ7VpUMY_H9WNXDh85a8jKbM67AQSI/edit?usp=sharing",
+#                "C:/Sync/Data/R/tmp/library/tmp/abcd-complete.csv"),
+#        localBackup="C:/Sync/Data/R/tmp/abcd-complete.csv",
+#        outputFile=c("C:/Sync/Data/R/tmp/abcd-complete.svg",
+#                     "C:/Sync/Data/R/tmp/abcd-complete.png"));
+#
+# abcd_specs_without_conditions <-
+#   abcd(specs=c("https://docs.google.com/spreadsheets/d/13VE1_1Oa38CidDDbiuIw7ZP8DIJ2qzs_i8wlJ63YuMI",
+#                "C:/Sync/Data/R/tmp/abcd-without-conditions.csv"),
+#        localBackup="C:/Sync/Data/R/tmp/abcd-without-conditions.csv",
+#        outputFile=c("C:/Sync/Data/R/tmp/abcd-without-conditions.svg",
+#                     "C:/Sync/Data/R/tmp/abcd-without-conditions.png"));
+#
+# abcd_specs_single_po_without_conditions <-
+#   abcd(specs=c("https://docs.google.com/spreadsheets/d/1ib4CJlWUYcShwwue8kXq2519tTefK6T-orLarhuk0q0",
+#                "C:/Sync/Data/R/tmp/abcd_specs_single_po_without_conditions.csv"),
+#        localBackup="C:/Sync/Data/R/tmp/abcd_specs_single_po_without_conditions.csv",
+#        outputFile=c("C:/Sync/Data/R/tmp/abcd_specs_single_po_without_conditions.svg",
+#                     "C:/Sync/Data/R/tmp/abcd_specs_single_po_without_conditions.png"));
