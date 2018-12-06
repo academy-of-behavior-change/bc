@@ -338,6 +338,7 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
 
 #' @rdname nnc
 #' @method print nnc
+#' @export
 print.nnc <- function(x, digits=2, ...) {
   if (!is.null(attr(x, 'plot'))) {
     grid::grid.newpage();

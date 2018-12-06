@@ -3,6 +3,7 @@
 S3method(plot,determinantStructure)
 S3method(print,abcdiagram)
 S3method(print,determinantStructure)
+S3method(print,nnc)
 export(CIBER)
 export(abcd)
 export(convert.er.to.threshold)
