@@ -1,0 +1,32 @@
+---
+title: "Acyclic Behavior Change Diagrams"
+author: "Gjalt-Jorn Peters"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+Acyclic Behavior Change Diagrams (ABCDs) are diagrams that illustrate the logic model (also known as 'theory of change') underlying any intervention, treatment, or campaign aiming to change some aspect of people's minds and/or behaviors.
+
+Such ABCDs are generated from a uniform, machine readable, format: a table, for example as stored in a comma separated values (CSV) file.
+
+ABCDs can be generated using the [behaviorchange::abcd()] function in the `behaviorchange` R package.
+
+They can also be generated from the online app that runs at https://a-bc.eu/apps/abcd.
+
+Example ABCD tables are available here:
+
+- [A simple but complete ABCD](https://docs.google.com/spreadsheets/d/1U1j-VoiK3WmfveJ7VpUMY_H9WNXDh85a8jKbM67AQSI/edit#gid=0)
+- [An ABCD with only one target behavior and no specified conditions](https://docs.google.com/spreadsheets/d/1o2w6Yt0Wyy8xVGTvwb_NRcba4B79pbnlYG3wh-qNhek/edit#gid=0)
+

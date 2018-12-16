@@ -39,3 +39,7 @@ Imports: BiasedUrn (>= 1.07),
          ufs (>= 0.0.1),
          userfriendlyscience (>= 0.7.1),
          viridis (>= 0.5.1)
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
