@@ -222,10 +222,10 @@ CIBER <- function(data,
   } else if (orderBy %IN% (targets)) {
     tryCatch({
       res$intermediate$sortOrder <-
-        sort(userfriendlyscience::associationMatrix(data,
-                                                    x=determinants,
-                                                    y=orderBy),
-                                         decreasing=res$intermediate$decreasing)$intermediate$sorting$order;
+        sort(ufs::associationMatrix(data,
+                                    x=determinants,
+                                    y=orderBy),
+                                    decreasing=res$intermediate$decreasing)$intermediate$sorting$order;
     }, error = function(errorMsg) {
       stop("When trying to call associationMatrix to get the sorting order, ",
            "the data frame no longer has class 'numeric', but instead '",
@@ -241,9 +241,9 @@ CIBER <- function(data,
 
   ### Get confidence intervals (we may re-sort later)
   res$intermediate$meansDat <-
-    userfriendlyscience::varsToDiamondPlotDf(data,
-                                             items = determinants,
-                                             conf.level=conf.level$means);
+    ufs::varsToDiamondPlotDf(data,
+                             items = determinants,
+                             conf.level=conf.level$means);
 
   if (length(unique(c(targets, determinants))) < 2) {
     stop("Something is wrong with the arguments provided ",
@@ -264,10 +264,10 @@ CIBER <- function(data,
 
   ### Get confidence intervals for effect sizes
   res$intermediate$assocDat <- sapply(targets, function(currentTarget) {
-    return(userfriendlyscience::associationsToDiamondPlotDf(res$intermediate$dat,
-                                                            determinants,
-                                                            currentTarget,
-                                                            esMetric = 'r'));
+    return(ufs::associationsToDiamondPlotDf(res$intermediate$dat,
+                                            determinants,
+                                            currentTarget,
+                                            esMetric = 'r'));
   }, simplify=FALSE);
   names(res$intermediate$assocDat) <- targets;
 
@@ -300,21 +300,21 @@ CIBER <- function(data,
   }
 
   res$intermediate$biAxisDiamondPlot <-
-    userfriendlyscience::biAxisDiamondPlot(data, items = determinants,
-                                           subQuestions = sortedSubQuestions,
-                                           leftAnchors = leftAnchors[res$intermediate$sortOrder],
-                                           rightAnchors = rightAnchors[res$intermediate$sortOrder],
-                                           generateColors = generateColors$means,
-                                           fullColorRange = res$intermediate$fullColorRange,
-                                           conf.level = conf.level$means,
-                                           drawPlot = FALSE,
-                                           returnPlotOnly = FALSE,
-                                           dotSize = dotSize,
-                                           baseFontSize = baseFontSize,
-                                           theme = theme,
-                                           jitterHeight = .3,
-                                           xbreaks=xbreaks,
-                                           ...);
+    ufs::biAxisDiamondPlot(data, items = determinants,
+                           subQuestions = sortedSubQuestions,
+                           leftAnchors = leftAnchors[res$intermediate$sortOrder],
+                           rightAnchors = rightAnchors[res$intermediate$sortOrder],
+                           generateColors = generateColors$means,
+                           fullColorRange = res$intermediate$fullColorRange,
+                           conf.level = conf.level$means,
+                           drawPlot = FALSE,
+                           returnPlotOnly = FALSE,
+                           dotSize = dotSize,
+                           baseFontSize = baseFontSize,
+                           theme = theme,
+                           jitterHeight = .3,
+                           xbreaks=xbreaks,
+                           ...);
 
   res$intermediate$meansPlot <-
     res$intermediate$biAxisDiamondPlot$output$plot;
@@ -337,15 +337,15 @@ CIBER <- function(data,
   res$intermediate$assocLayers <-
     sapply(names(res$intermediate$assocDat),
            function(currentTarget) {
-             return(userfriendlyscience::diamondPlot(res$intermediate$assocDat[[currentTarget]],
-                                                     ciCols=c('lo', 'es', 'hi'),
-                                                     yLabels = subQuestions[res$intermediate$sortOrder],
-                                                     generateColors=generateColors$associations,
-                                                     fullColorRange = c(-1, 1),
-                                                     alpha = associationsAlpha,
-                                                     lineColor=strokeColors[currentTarget],
-                                                     size=1, theme=theme,
-                                                     returnLayerOnly = TRUE, ...));
+             return(ufs::diamondPlot(res$intermediate$assocDat[[currentTarget]],
+                                     ciCols=c('lo', 'es', 'hi'),
+                                     yLabels = subQuestions[res$intermediate$sortOrder],
+                                     generateColors=generateColors$associations,
+                                     fullColorRange = c(-1, 1),
+                                     alpha = associationsAlpha,
+                                     lineColor=strokeColors[currentTarget],
+                                     size=1, theme=theme,
+                                     returnLayerOnly = TRUE, ...));
            }, simplify=FALSE);
 
   res$intermediate$assocPlot <- ggplot2::ggplot() +
