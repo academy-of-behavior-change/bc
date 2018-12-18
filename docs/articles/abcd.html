@@ -72,7 +72,7 @@
       <h1>Acyclic Behavior Change Diagrams</h1>
                         <h4 class="author">Gjalt-Jorn Peters</h4>
             
-            <h4 class="date">2018-12-16</h4>
+            <h4 class="date">2018-12-18</h4>
       
       
       <div class="hidden name"><code>abcd.Rmd</code></div>
@@ -81,18 +81,68 @@
 
     
     
-<p>Acyclic Behavior Change Diagrams (ABCDs) are diagrams that illustrate the logic model (also known as ‘theory of change’) underlying any intervention, treatment, or campaign aiming to change some aspect of people’s minds and/or behaviors.</p>
-<p>Such ABCDs are generated from a uniform, machine readable, format: a table, for example as stored in a comma separated values (CSV) file.</p>
+<p>Acyclic Behavior Change Diagrams (ABCDs) are diagrams that illustrate the logic model (also known as ‘theory of change’) underlying any intervention, treatment, or campaign aiming to change some aspect of people’s minds and/or behaviors. Specifically, the ABCD shows the assumed causal and structural assumptions, thereby showing what is assumed to cause what (e.g. which elements of the intervention are assumed to influence which aspects of the target population’s psychology?) and what is assumed to consist of what (e.g. which determinants are assumed to contain which specific aspects of the target population’s psychology?).</p>
+<p>Such ABCDs are generated from a uniform, machine readable, format: a table, for example as stored in a comma separated values (CSV) file. In it most extensive form, the table has the following columns:</p>
+<ul>
+<li>
+<strong>Behavior Change Principles (BCPs)</strong>: The specific psychological principles engaged to influence the relevant sub-determinants, usually selected using the determinants to which the sub-determinants ‘belong’. These are also known as methods of behavior change in the Intervention Mapping framework, or behavior change techniques, BCTs, in the Behavior Change Wheel approach. For a list of 99 BCPs, see Kok et al. (2016).</li>
+<li>
+<strong>Conditions for effectiveness</strong>: The conditions that need to be met for a Behavior Change Principle (BCP) to be effective. These conditions depend on the specific underlying Evolutionary Learning Processes (ELPs) that the BCP engages (Crutzen &amp; Peters, 2018). If the conditions for effectiveness (called <em>parameters</em> for effectiveness in the Intervention Mapping framework) are not met, the method will likely not be effective, or at least, not achieve its maximum effectiveness.</li>
+<li>
+<strong>Applications</strong>: Since BCP’s describe aspects of human psychology in general, they are necessarily formulated on a generic level. Therefore, using them in an intervention requires translating them to the specific target population, culture, available means, and context. The result of this translation is the application of the BCP. Multiple BCPs can be combined into one application; and one BCP can be applied in multiple applications (see Kok, 2014).</li>
+<li>
+<strong>Sub-determinants</strong>: Behavior change interventions engage specific aspects of the human psychology (ideally, they specifically, target those aspects found most important in predicting the target behavior, as can be established with  plots. These aspects are called sub-determinants (the Intervention Mapping framework references <em>Change Objectives</em>, which are sub-determinants formulated according to specific guidelines). In some theoretical traditions, sub-determinants are called <em>beliefs</em>.</li>
+<li>
+<strong>Determinants</strong>: The overarching psychological constructs that are defined as clusters of specific aspects of the human psychology that explain humans’ behavior (and are targeted by behavior change interventions). Psychological theories contain specific definitions of such determinants, and make statements about how they relate to each other and to human behavior. There are also theories (and exists empirical evidence) on how these determinants can be changed (i.e. BCPs), so althought the sub-determinants are what is targeted in an intervention, the selection of feasible BCPs requires knowing to which determinants those sub-determinants belong.</li>
+<li>
+<strong>Performance objectives</strong>: The specific sub-behaviors that often underlie (or make up) the ultimate target behavior. These are distinguished from the overarching target behavior because the relevant determinants of these sub-behaviors can be different: for example, the reasons why people do or do not <em>buy</em> condoms can be very different from the reasons why they do or do not <em>carry</em> condoms or why they do or do not <em>negotiate</em> condom use with a sexual partner.</li>
+<li>
+<strong>Behavior</strong>: The ultimate target behavior of the intervention, usually an umbrella that implicitly contains multiple performance objectives.</li>
+</ul>
 <p>ABCDs can be generated using the [behaviorchange::abcd()] function in the <code>behaviorchange</code> R package.</p>
 <p>They can also be generated from the online app that runs at <a href="https://a-bc.eu/apps/abcd" class="uri">https://a-bc.eu/apps/abcd</a>.</p>
-<p>Example ABCD tables are available here:</p>
-<ul>
-<li><a href="https://docs.google.com/spreadsheets/d/1U1j-VoiK3WmfveJ7VpUMY_H9WNXDh85a8jKbM67AQSI/edit#gid=0">A simple but complete ABCD</a></li>
-<li><a href="https://docs.google.com/spreadsheets/d/1o2w6Yt0Wyy8xVGTvwb_NRcba4B79pbnlYG3wh-qNhek/edit#gid=0">An ABCD with only one target behavior and no specified conditions</a></li>
-</ul>
+<div id="examples" class="section level2">
+<h2 class="hasAnchor">
+<a href="#examples" class="anchor"></a>Examples</h2>
+<p>This are two example ABCDs. The ABCD tables are included in the <code>behaviorchange</code> package, and the identical tables are available on Google Sheets.</p>
+<div id="a-simple-but-complete-abcd" class="section level3">
+<h3 class="hasAnchor">
+<a href="#a-simple-but-complete-abcd" class="anchor"></a>A simple but complete ABCD</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">behaviorchange<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/behaviorchange/topics/abcd">abcd</a></span>(behaviorchange<span class="op">::</span>abcd_specs_complete);</code></pre></div>
+<div class="figure">
+<img src="abcd_specs_complete.png" alt="A simple but complete ABCD" style="width:100.0%"><p class="caption">A simple but complete ABCD</p>
 </div>
+<p>The ABCD table for this ABCD is available at <a href="https://docs.google.com/spreadsheets/d/1U1j-VoiK3WmfveJ7VpUMY_H9WNXDh85a8jKbM67AQSI/edit#gid=0" class="uri">https://docs.google.com/spreadsheets/d/1U1j-VoiK3WmfveJ7VpUMY_H9WNXDh85a8jKbM67AQSI/edit#gid=0</a>.</p>
+</div>
+<div id="an-abcd-with-only-one-target-behavior-and-no-specified-conditions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#an-abcd-with-only-one-target-behavior-and-no-specified-conditions" class="anchor"></a>An ABCD with only one target behavior and no specified conditions</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">behaviorchange<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/behaviorchange/topics/abcd">abcd</a></span>(behaviorchange<span class="op">::</span>abcd_specs_single_po_without_conditions);</code></pre></div>
+<div class="figure">
+<img src="abcd_specs_single_po_without_conditions.png" alt="An ABCD with only one target behavior and no specified conditions" style="width:100.0%"><p class="caption">An ABCD with only one target behavior and no specified conditions</p>
+</div>
+<p>The ABCD table for this ABCD is available at <a href="https://docs.google.com/spreadsheets/d/1o2w6Yt0Wyy8xVGTvwb_NRcba4B79pbnlYG3wh-qNhek/edit#gid=0" class="uri">https://docs.google.com/spreadsheets/d/1o2w6Yt0Wyy8xVGTvwb_NRcba4B79pbnlYG3wh-qNhek/edit#gid=0</a>.</p>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<p>Crutzen, R., &amp; Peters, G.-J. Y. (2018). Evolutionary learning processes as the foundation for behaviour change. Health Psychology Review, 12(1), 43–57. <a href="https://doi.org/10.1080/17437199.2017.1362569" class="uri">https://doi.org/10.1080/17437199.2017.1362569</a></p>
+<p>Peters, G.-J. Y., &amp; Crutzen, R. (2017). Pragmatic nihilism: how a Theory of Nothing can help health psychology progress. Health Psychology Review, 11(2). <a href="https://doi.org/10.1080/17437199.2017.1284015" class="uri">https://doi.org/10.1080/17437199.2017.1284015</a></p>
+<p>Kok, G. (2014). A practical guide to effective behavior change: How to apply theory- and evidence-based behavior change methods in an intervention. European Health Psychologist, 16(5), 156–170. <a href="https://doi.org/10.31234/osf.io/r78wh" class="uri">https://doi.org/10.31234/osf.io/r78wh</a></p>
+<p>Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., Fernández, M E., Markham, C., &amp; Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. Health Psychology Review, 10(3), 297–312. <a href="https://doi.org/10.1080/17437199.2015.1077155" class="uri">https://doi.org/10.1080/17437199.2015.1077155</a></p>
+</div>
+  </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#examples">Examples</a></li>
+      <li><a href="#references">References</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

@@ -311,17 +311,24 @@ Diagram to report and analyze interventions.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>### Partial acyclic behavior change diagram of only</span>
-<span class='co'>### one performance objective (sub-behavior)</span>
-<span class='co'>### (using the 'abcd_specs_single_po_without_conditions'</span>
-<span class='co'>###  dataset in this package)</span>
-<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd'>abcd</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd_specs_examples'>abcd_specs_single_po_without_conditions</a></span>);
+    <pre class="examples"><div class='input'>### (Not run to prevent pkgdown() from choking)
+/dontrun{
+### Partial acyclic behavior change diagram of only
+### one performance objective (sub-behavior)
+### (using the 'abcd_specs_single_po_without_conditions'
+###  dataset in this package)
+print(behaviorchange::abcd(behaviorchange::abcd_specs_single_po_without_conditions));
 
-<span class='co'>### Acyclic behavior change diagram including multiple</span>
-<span class='co'>### sub-behaviors (performance objectives)</span>
-<span class='co'>### (using the 'abcd_specs_complete' dataset in this</span>
-<span class='co'>###  package)</span>
-<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd'>abcd</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/abcd_specs_examples'>abcd_specs_complete</a></span>);</div></pre>
+### Acyclic behavior change diagram including multiple
+### sub-behaviors (performance objectives)
+### (using the 'abcd_specs_complete' dataset in this
+###  package)
+print(behaviorchange::abcd(behaviorchange::abcd_specs_complete));
+}
+</div><div class='output co'>#&gt; <span class='error'>Error: &lt;text&gt;:2:1: unexpected '/'</span>
+#&gt; <span class='error'>1: ### (Not run to prevent pkgdown() from choking)</span>
+#&gt; <span class='error'>2: /</span>
+#&gt; <span class='error'>   ^</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -138,18 +138,18 @@
 #'   Peters, G.-J. Y., et al. (2019) The core of
 #'   behavior change: introducing the Acyclic Behavior Change
 #'   Diagram to report and analyze interventions.
-#' @examples ### Partial acyclic behavior change diagram of only
+#' @examples ### Using 'print' to prevent pkgdown() from choking
+#' ### Partial acyclic behavior change diagram of only
 #' ### one performance objective (sub-behavior)
 #' ### (using the 'abcd_specs_single_po_without_conditions'
 #' ###  dataset in this package)
-#' behaviorchange::abcd(behaviorchange::abcd_specs_single_po_without_conditions);
+#' print(behaviorchange::abcd(behaviorchange::abcd_specs_single_po_without_conditions));
 #'
 #' ### Acyclic behavior change diagram including multiple
 #' ### sub-behaviors (performance objectives)
 #' ### (using the 'abcd_specs_complete' dataset in this
 #' ###  package)
-#' behaviorchange::abcd(behaviorchange::abcd_specs_complete);
-#'
+#' print(behaviorchange::abcd(behaviorchange::abcd_specs_complete));
 #' @export
 
 abcd <- function(specs,
@@ -634,12 +634,14 @@ abcd <- function(specs,
 }
 
 #' @export
-print.abcdiagram <- function(x, ...) {
-  print(DiagrammeR::render_graph(x$output$graph,
-                                 width=x$input$width,
-                                 height=x$input$height,
-                                 title = DiagrammeR::get_graph_name(x$output$graph)),
-        ...);
+print.abcdiagram <- function(x,
+                             width=x$input$width,
+                             height=x$input$height,
+                             title = DiagrammeR::get_graph_name(x$output$graph)) {
+  return(DiagrammeR::render_graph(x$output$graph,
+                                  width=width,
+                                  height=height,
+                                  title=title));
 }
 
 #' Three simple example datasets for ABCD's
