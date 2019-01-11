@@ -81,11 +81,11 @@
 #' @examples
 #'
 #' ### Simple example
-#' nnc(d=.4, cer=.3);
+#' behaviorchange::nnc(d=.4, cer=.3);
 #'
 #' ### Or for a scenario where events are undesirable, and the
 #' ### intervention effective (therefore having a negative value for d):
-#' nnc(d=-.4, cer=.3, eventDesirable=FALSE);
+#' behaviorchange::nnc(d=-.4, cer=.3, eventDesirable=FALSE);
 #'
 #' @name nnc
 #' @rdname nnc
@@ -219,7 +219,7 @@ nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,
 
   if (identical(nnc[1], nnc[2])) nnc <- nnc[1];
 
-  res <- ceiling(nnc);
+  res <- nnc;
 
   attr(res, 'nnc.raw') <- nnc;
   attr(res, 'eventDesirable') <- eventDesirable;
@@ -345,6 +345,18 @@ print.nnc <- function(x, digits=2, ...) {
     grid::grid.draw(attr(x, 'plot'));
   }
 
+  if (length(x) > 1) {
+    nnc <- as.numeric(x);
+    nncStatement <-
+      paste0(attr(x, 'numbersNeededTitle'), ": ", ufs::formatCI(ceiling(nnc)),
+             " (exact: ", ufs::formatCI(round(nnc, digits)), ")");
+  } else {
+    nnc <- as.numeric(x);
+    nncStatement <-
+      paste0(attr(x, 'numbersNeededTitle'), ": ", ceiling(nnc),
+             " (exact: ", round(nnc, digits), ")");
+  }
+
   if (is.null(attr(x, 'cer.ci'))) {
     cer <- attr(x, 'cer');
     cerStatement <- paste0("a Control Event Rate (CER) of ", ufs::formatR(cer));
@@ -367,9 +379,9 @@ print.nnc <- function(x, digits=2, ...) {
     d <- attr(x, 'd');
     dStatement <- paste0(" and a Cohen's d of ", round(d, digits));
   } else {
-    d <- ufs::formatCI(sort(attr(x, 'd.ci')));
+    d <- ufs::formatCI(sort(attr(round(x, digits), 'd.ci')));
     dStatement <- paste0(" and a Cohen's d with a confidence interval of ",
-                         round(d, digits));
+                         d);
   }
 
   if (is.null(attr(x, 'r.ci'))) {
@@ -387,15 +399,8 @@ print.nnc <- function(x, digits=2, ...) {
                          " between the dependent measure and behavior");
   }
 
-  if (length(x) > 1) {
-    nnc <- ufs::formatCI(x);
-  } else {
-    nnc <- x;
-  }
-
   ufs::cat0("\n",
-            attr(x, 'numbersNeededTitle'),
-            ": ", nnc, "\n\n",
+            nncStatement, "\n\n",
             "(Based on ", cerStatement,
             eerStatement, dStatement, rStatement, ".)\n");
 
@@ -406,3 +411,127 @@ print.nnc <- function(x, digits=2, ...) {
   }
 
 }
+
+###############################################################################
+###############################################################################
+### SAS script for computing confidence intervals (see Bender, 2001)
+###############################################################################
+###############################################################################
+
+# ***********************************************************************
+#   *               CALCULATION of CONFIDENCE INTERVALS FOR               *
+#   *                    RISK DIFFERENCES, NNT and PIN                    *
+#   *      BASED ON WILSON SCORE METHOD WITHOUT CONTINUITY CORRECTION     *
+#   *  REFERENCES: NEWCOMBE (1998), STATISTICS IN MEDICINE 17, 873-890    *
+#   *              BENDER (2001), CONTROLLED CLINICAL TRIALS 22, 102-110  *
+#   *              HELLER & DOBSON (2000), BMJ 321, 950-952               *
+#   ***********************************************************************;
+#
+# *------------------------------------------------------------------*
+#   |                           QUESTIONS ?                            |
+#   |                                                                  |
+#   | --->  Prof. Dr. Ralf BENDER  Phone:  +49 221 35685-451           |
+#   |                              Fax:    +49 221 35685-891           |
+#   |                              E-Mail: Ralf@rbsd.de                |
+#   *------------------------------------------------------------------*;
+# *------------------------------------------------------------------*
+#   !!                         NOTE:                                  !!
+#   !!   You have to enter the actual results of the two groups       !!
+#   !!   at the end of the program (see EXAMPLE below).               !!
+#   !!   e1 is the number of adverse events in the high risk group    !!
+#   !!      (e.g. standard treatment or exposure)                     !!
+#   !!   n1 is the sample size of the high risk group                 !!
+#   !!   e2 is the number of adverse events in the low risk group     !!
+#   !!      (e.g. new treatment or no exposure)                       !!
+#   !!   n2 is the sample size of the low risk group                  !!
+#   *------------------------------------------------------------------*;
+#
+# options linesize=105;
+#
+# %MACRO PIN (E1,N1,E2,N2);%*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM;
+# proc iml;
+# e1 = &E1;             /* Number of events in high-risk group A */
+#   n1 = &N1;             /* Sample size of high risk group A      */
+#   e2 = &E2;             /* Number of events in low-risk group B  */
+#   n2 = &N2;             /* Sample size of low risk group B       */
+#   *--------------------------*Descriptive*-------------------------------*;
+# start Descript;
+# e  = e1+e2;     n  = n1+n2;
+# r1 = e1/n1;     r2 = e2/n2;
+# r  = e/n;
+# RD = r1-r2;      /* Usual risk difference      */
+#   PRD = r-r2;      /* Population risk difference */
+#   NNT   = 1/RD;
+# PREV1 = n1/n;
+# PIN   = 1/PRD;
+# print "Events and sample sizes of the groups:     " e n " " e1 n1 e2 n2;
+# print "Risks of the groups:                       " r r1 r2;
+# print "Usual risk difference (r1-r2) and NNT:     " RD NNT;
+# print "Population risk difference (r-r2) and PIN: " PRD PIN,,;
+# finish;
+# *------------------------*Standard Wald Method*----------------------------*;
+# start Wald;
+# print "Standard Wald method  (frequently inadequate)";
+# z95 = probit(1-(0.05/2));   z99 = probit(1-(0.01/2));
+# RD_L95 = RD - z95*SQRT((e1*(n1-e1)/n1**3)+(e2*(n2-e2)/n2**3));
+# RD_U95 = RD + z95*SQRT((e1*(n1-e1)/n1**3)+(e2*(n2-e2)/n2**3));
+# RD_L99 = RD - z99*SQRT((e1*(n1-e1)/n1**3)+(e2*(n2-e2)/n2**3));
+# RD_U99 = RD + z99*SQRT((e1*(n1-e1)/n1**3)+(e2*(n2-e2)/n2**3));
+# PRD_L95 = PREV1*RD_L95;    PRD_U95 = PREV1*RD_U95;
+# PRD_L99 = PREV1*RD_L99;    PRD_U99 = PREV1*RD_U99;
+# NNT_L95 = 1/RD_U95;    NNT_U95 = 1/RD_L95;
+# NNT_L99 = 1/RD_U99;    NNT_U99 = 1/RD_L99;
+# PIN_L95 = 1/PRD_U95;    PIN_U95 = 1/PRD_L95;
+# PIN_L99 = 1/PRD_U99;    PIN_U99 = 1/PRD_L99;
+# print "95% confidence intervals for RD and NNT:  " RD_L95 RD_U95   "  " NNT_L95 NNT_U95;
+# print "95% confidence intervals for PRD and PIN: " PRD_L95 PRD_U95 "  " PIN_L95 PIN_U95,,;
+# print "99% confidence intervals for RD and NNT:  " RD_L99 RD_U99   "  " NNT_L99 NNT_U99;
+# print "99% confidence intervals for PRD and PIN: " PRD_L99 PRD_U99 "  " PIN_L99 PIN_U99,,,;
+# finish;
+# *-----------------------*Wilson Score Method*---------------------------*;
+# start Wilson;
+# print "Confidence intervals based upon Wilson Scores";
+# z95 = probit(1-(0.05/2));   z99 = probit(1-(0.01/2));
+# l195 = (2*e1+z95**2) / (2*(n1+z95**2)) -
+#   SQRT(((2*e1+z95**2)/(2*(n1+z95**2)))**2-e1**2/(n1**2+n1*z95**2));
+# u195 = (2*e1+z95**2) / (2*(n1+z95**2)) +
+#   SQRT(((2*e1+z95**2)/(2*(n1+z95**2)))**2-e1**2/(n1**2+n1*z95**2));
+# l295 = (2*e2+z95**2) / (2*(n2+z95**2)) -
+#   SQRT(((2*e2+z95**2)/(2*(n2+z95**2)))**2-e2**2/(n2**2+n2*z95**2));
+# u295 = (2*e2+z95**2) / (2*(n2+z95**2)) +
+#   SQRT(((2*e2+z95**2)/(2*(n2+z95**2)))**2-e2**2/(n2**2+n2*z95**2));
+# l199 = (2*e1+z99**2) / (2*(n1+z99**2)) -
+#   SQRT(((2*e1+z99**2)/(2*(n1+z99**2)))**2-e1**2/(n1**2+n1*z99**2));
+# u199 = (2*e1+z99**2) / (2*(n1+z99**2)) +
+#   SQRT(((2*e1+z99**2)/(2*(n1+z99**2)))**2-e1**2/(n1**2+n1*z99**2));
+# l299 = (2*e2+z99**2) / (2*(n2+z99**2)) -
+#   SQRT(((2*e2+z99**2)/(2*(n2+z99**2)))**2-e2**2/(n2**2+n2*z99**2));
+# u299 = (2*e2+z99**2) / (2*(n2+z99**2)) +
+#   SQRT(((2*e2+z99**2)/(2*(n2+z99**2)))**2-e2**2/(n2**2+n2*z99**2));
+# delta95 = SQRT((e1/n1-l195)**2+(u295-e2/n2)**2);
+# epsil95 = SQRT((u195-e1/n1)**2+(e2/n2-l295)**2);
+# delta99 = SQRT((e1/n1-l199)**2+(u299-e2/n2)**2);
+# epsil99 = SQRT((u199-e1/n1)**2+(e2/n2-l299)**2);
+# RD_L95 = RD - delta95;
+# RD_U95 = RD + epsil95;
+# RD_L99 = RD - delta99;
+# RD_U99 = RD + epsil99;
+# PRD_L95 = PREV1*RD_L95;    PRD_U95 = PREV1*RD_U95;
+# PRD_L99 = PREV1*RD_L99;    PRD_U99 = PREV1*RD_U99;
+# NNT_L95 = 1/RD_U95;     NNT_U95 = 1/RD_L95;
+# NNT_L99 = 1/RD_U99;     NNT_U99 = 1/RD_L99;
+# PIN_L95 = 1/PRD_U95;    PIN_U95 = 1/PRD_L95;
+# PIN_L99 = 1/PRD_U99;    PIN_U99 = 1/PRD_L99;
+# print "95% confidence intervals for RD and NNT:  " RD_L95 RD_U95   "  " NNT_L95 NNT_U95;
+# print "95% confidence intervals for PRD and PIN: " PRD_L95 PRD_U95 "  " PIN_L95 PIN_U95,,;
+# print "99% confidence intervals for RD and NNT:  " RD_L99 RD_U99   "  " NNT_L99 NNT_U99;
+# print "99% confidence intervals for PRD and PIN: " PRD_L99 PRD_U99 "  " PIN_L99 PIN_U99,,;
+# finish;
+# run Descript;
+# run Wald;
+# run Wilson;
+# quit;
+# %MEND PIN;%*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM;
+#
+# title 'EXAMPLE';
+# %PIN (135,8251,735,102098);

@@ -272,14 +272,20 @@ CIBER <- function(data,
   names(res$intermediate$assocDat) <- targets;
 
   ### Get R squared values
-  res$intermediate$Rsq <- lapply(targets, function(currentTarget) {
-    return(userfriendlyscience::regr(stats::formula(paste(currentTarget,
-                                                    '~',
-                                                    paste(determinants,
-                                                    collapse=" + "))),
-                data=res$intermediate$dat,
-                conf.level=conf.level$associations));
-  });
+  tryCatch(
+    res$intermediate$Rsq <- lapply(targets, function(currentTarget) {
+      return(userfriendlyscience::regr(stats::formula(paste(currentTarget,
+                                                      '~',
+                                                      paste(determinants,
+                                                      collapse=" + "))),
+                  data=res$intermediate$dat,
+                  conf.level=conf.level$associations));
+    }), error=function(e) {
+      stop("Encountered an error when trying to compute the R square of targets ",
+           ufs::vecTxtQ(targets), " predicted by ", ufs::vecTxtQ(determinants),
+           ".");
+    });
+
 
   res$intermediate$meansDat <-
     res$intermediate$meansDat[res$intermediate$sortOrder, ];

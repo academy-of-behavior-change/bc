@@ -85,30 +85,35 @@
 #' @examples
 #'
 #' ### Show distribution for an event rate value of 125
-#' ggNNC(erDataSeq(threshold=125, mean=90, sd=30));
+#' behaviorchange::ggNNC(behaviorchange::erDataSeq(threshold=125, mean=90, sd=30));
 #'
 #' ### If the event occurs under the threshold instead of
 #' ### above it
-#' ggNNC(erDataSeq(threshold=125, mean=90, sd=30,
-#'       eventIfHigher = FALSE));
+#' behaviorchange::ggNNC(behaviorchange::erDataSeq(threshold=125,
+#'                                                 mean=90, sd=30,
+#'                       eventIfHigher = FALSE));
 #'
 #' ### ... And for undesirable events (note how
 #' ### desirability is an argument for ggNNC, whereas
 #' ### whether an event occurs 'above' or 'below' the
 #' ### threshold is an argument for erDataSeq):
-#' ggNNC(erDataSeq(threshold=125, mean=90, sd=30,
-#'                 eventIfHigher = FALSE),
+#' behaviorchange::ggNNC(behaviorchange::erDataSeq(threshold=125,
+#'                                                 mean=90, sd=30,
+#'                       eventIfHigher = FALSE),
 #'       eventDesirable = FALSE);
 #'
 #' ### Show event rate for both experimental and
 #' ### control conditions, and show the numbers
 #' ### needed for change
-#' ggNNC(erDataSeq(threshold=125, mean=90, sd=30), d=.5);
+#' behaviorchange::ggNNC(behaviorchange::erDataSeq(threshold=125,
+#'                                                 mean=90, sd=30),
+#'                       d=.5);
 #'
 #' ### Illustration of how even with very large effect
 #' ### sizes, if the control event rate is very high,
 #' ### you'll still need a high number of NNC
-#' ggNNC(erDataSeq(er=.9), d=1);
+#' behaviorchange::ggNNC(behaviorchange::erDataSeq(er=.9),
+#'                       d=1);
 #'
 #' @name nncvis
 #' @rdname nncvis
@@ -175,7 +180,7 @@ ggNNC <- function(cerDataSeq, d = NULL,
              plot=FALSE);
   if (!is.null(plotTitle)) {
     if (length(plotTitle) == 2) {
-      plotTitle <- paste0(plotTitle[1], round(nnc, 2), plotTitle[2]);
+      plotTitle <- paste0(plotTitle[1], ceiling(nnc), " (exact: ", round(nnc, 2), ")", plotTitle[2]);
     } else {
       plotTitle <- paste0(plotTitle, collapse="");
     }
