@@ -146,8 +146,7 @@ performance objectives.
 For details, see Peters et al. (2019).
 }
 \examples{
-### (Not run to prevent pkgdown() from choking)
-/dontrun{
+### Using 'print' to prevent pkgdown() from choking
 ### Partial acyclic behavior change diagram of only
 ### one performance objective (sub-behavior)
 ### (using the 'abcd_specs_single_po_without_conditions'
@@ -159,7 +158,6 @@ print(behaviorchange::abcd(behaviorchange::abcd_specs_single_po_without_conditio
 ### (using the 'abcd_specs_complete' dataset in this
 ###  package)
 print(behaviorchange::abcd(behaviorchange::abcd_specs_complete));
-}
 }
 \references{
 Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary

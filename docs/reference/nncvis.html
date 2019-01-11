@@ -342,26 +342,31 @@ intervention research.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>### Show distribution for an event rate value of 125</span>
-<span class='fu'>ggNNC</span>(<span class='fu'>erDataSeq</span>(<span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>125</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>90</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>30</span>));</div><div class='img'><img src='nncvis-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/nncvis'>ggNNC</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'>erDataSeq</span>(<span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>125</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>90</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>30</span>));</div><div class='img'><img src='nncvis-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>### If the event occurs under the threshold instead of</span>
 <span class='co'>### above it</span>
-<span class='fu'>ggNNC</span>(<span class='fu'>erDataSeq</span>(<span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>125</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>90</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>30</span>,
-      <span class='kw'>eventIfHigher</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>));</div><div class='img'><img src='nncvis-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/nncvis'>ggNNC</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'>erDataSeq</span>(<span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>125</span>,
+                                                <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>90</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>30</span>,
+                      <span class='kw'>eventIfHigher</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>));</div><div class='img'><img src='nncvis-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>### ... And for undesirable events (note how</span>
 <span class='co'>### desirability is an argument for ggNNC, whereas</span>
 <span class='co'>### whether an event occurs 'above' or 'below' the</span>
 <span class='co'>### threshold is an argument for erDataSeq):</span>
-<span class='fu'>ggNNC</span>(<span class='fu'>erDataSeq</span>(<span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>125</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>90</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>30</span>,
-                <span class='kw'>eventIfHigher</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
+<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/nncvis'>ggNNC</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'>erDataSeq</span>(<span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>125</span>,
+                                                <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>90</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>30</span>,
+                      <span class='kw'>eventIfHigher</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
       <span class='kw'>eventDesirable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>);</div><div class='img'><img src='nncvis-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>### Show event rate for both experimental and</span>
 <span class='co'>### control conditions, and show the numbers</span>
 <span class='co'>### needed for change</span>
-<span class='fu'>ggNNC</span>(<span class='fu'>erDataSeq</span>(<span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>125</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>90</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>30</span>), <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>.5</span>);</div><div class='img'><img src='nncvis-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/nncvis'>ggNNC</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'>erDataSeq</span>(<span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>125</span>,
+                                                <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>90</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>30</span>),
+                      <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>.5</span>);</div><div class='img'><img src='nncvis-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>### Illustration of how even with very large effect</span>
 <span class='co'>### sizes, if the control event rate is very high,</span>
 <span class='co'>### you'll still need a high number of NNC</span>
-<span class='fu'>ggNNC</span>(<span class='fu'>erDataSeq</span>(<span class='kw'>er</span><span class='kw'>=</span><span class='fl'>.9</span>), <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>1</span>);</div><div class='img'><img src='nncvis-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/behaviorchange/topics/nncvis'>ggNNC</a></span>(<span class='kw pkg'>behaviorchange</span><span class='kw ns'>::</span><span class='fu'>erDataSeq</span>(<span class='kw'>er</span><span class='kw'>=</span><span class='fl'>.9</span>),
+                      <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>1</span>);</div><div class='img'><img src='nncvis-5.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

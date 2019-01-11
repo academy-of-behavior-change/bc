@@ -118,11 +118,11 @@ For more details, see Gruijters & Peters (2019) for details.
 \examples{
 
 ### Simple example
-nnc(d=.4, cer=.3);
+behaviorchange::nnc(d=.4, cer=.3);
 
 ### Or for a scenario where events are undesirable, and the
 ### intervention effective (therefore having a negative value for d):
-nnc(d=-.4, cer=.3, eventDesirable=FALSE);
+behaviorchange::nnc(d=-.4, cer=.3, eventDesirable=FALSE);
 
 }
 \references{
