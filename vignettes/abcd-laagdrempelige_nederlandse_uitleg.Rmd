@@ -1,0 +1,115 @@
+---
+title: "ABCD: Laagdrempelige Nederlandse uitleg"
+author: "Gjalt-Jorn Peters"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+);
+require('magrittr');
+```
+
+ABCD's zijn figuren die helpen om interventies (ook wel "campagnes" of "programma's" genoemd) te maken of evalueren. ABCD is een Engelstalig acroniem van "Acyclic Behavior Change Diagram": kortom, een gedragsveranderingsdiagram waarin geen 'cycli' zitten, oftewel, waarin alle pijlen dezelfde kant op wijzen (in dit geval naar rechts). ABCD's maken de aannames, die de basis vormen van een interventie, zichtbaar.
+
+# Algemene inleiding: XTC
+
+*Als je al weet hoe gedragsverandering werkt kun je dit stukje overslaan en gelijk naar het kopje "[ABCDs](ABCDs)" hieronder gaan*
+
+Om te begrijpen waarom deze aannames belangrijk zijn, eerst wat uitleg over wat zo'n interventie is en hoe die werkt. Hierbij gebruik ik voorbeelden uit mijn eigen onderzoek naar XTC-gebruik (een van de rondes van [Party Panel](https://partypanel.nl)), onderdeel van [Celebrate Safe](https://celebratesafe.nl)). De dosis MDMA (de werkzame stof in XTC) in XTC-pillen is de afgelopen jaren gestegen. Vroeger bevatten XTC-pillen ongeveer 80 milligram MDMA: precies de goede dosis van iemand van 60-80 kilogram. Tegenwoordig is het gemiddelde bijna 160 milligram per pil. Als mensen hun pil die niet doormidden breken, of bij zwaardere pillen, door drie&euml;en of vieren, nemen ze te veel. Hierdoor is hun ervaring minder goed en is gebruik schadelijker dan als je goed doseert. Daarom hebben we onderzoek gedaan naar hoe mensen denken over deze hooggedoseerde XTC. Uit dit onderzoek zal ik voorbeelden putten.
+
+## Wat is een interventie?
+
+Een interventie is elke doelgerichte poging om het welzijn of de gezondheid van mensen te verbeteren. Een interventie kan via de omgeving werken, bijvoorbeeld door te zorgen dat er in schoolkantines geen gefrituurd eten meer is. Een interventie kan zich ook rechtstreeks op de doelgroep richten, bijvoorbeeld door jongeren te trainen om met stress om te gaan. En een interventie kan zich ook op de omgeving &euml;n de mensen in de doelgroep richten.
+
+Interventies die zich op de omgeving richten, doen dat altijd via mensen. Alles in de omgeving wordt bepaald door andere mensen: het schoolbestuur beslist bijvoorbeeld over het menu in de kantine, en politici beslissen over sportvelden of fietspaden. Dit zijn mensen, net als de mensen in de doelgroep. Interventies werken dus altijd door mensen iets te laten doen, of het nu interventies zijn die zich op de omgeving richten, op de doelgroep, of allebei.
+
+## Gedragsverandering
+
+Het gedrag van mensen (bijvoorbeeld stoppen met roken, gezonder eten, meer sporten, of beslissen om een sportveld aan te laten leggen) wordt bestuurd door de hersenen. Als we het over gedragsverandering hebben, gaat het er dus eigenlijk om dat er iets veranderd in de hersenen. Zonder veranderingen in de hersenen is het onmogelijk om gedragsverandering te bereiken.
+
+Om gedrag te veranderen, moet je dus weten wat je moet veranderen in de hersenen van mensen, en hoe. De eerste vraag die je moet kunnen beantwoorden bij gedragsverandering is dus: waarom doen mensen wat ze doen?
+
+## Waarom mensen doen wat ze doen
+
+Er is al veel bekend over waarom mensen doen wat ze doen. Omdat gedrag wordt bestuurd vanuit de hersenen valt het bestuderen van waarom mensen doen wat ze doen onder de psychologie. Veel van dit onderzoek komt uit de sociale en gezondheidspsychologie. Er zijn veel theori&euml;en ontwikkeld die elk steeds een klein stukje gedrag verklaren. Wat die theori&euml;en vaak doen is een stukje van de psychologie een naam geven. Een simpel voorbeeld is bijvoorbeeld alle feitjes over de wereld samen 'kennis' te noemen, of alle opvattingen over de risico's van een gedrag 'risicoperceptie.
+
+### De 'reasoned action approach'
+
+Een veel gebruikte theorie is bijvoorbeeld de 'Reasoned Action Approach' (RAA), oftewel, de 'aanpak voor beredeneerd gedrag'. Deze theorie is een handig voorbeeld van hoe je kunt nadenken over waarom mensen doen wat ze doen om twee redenen. Ten eerste is de theorie alleen is bedoeld om specifiek gedrag te verklaren: beredeneerd gedrag, en dus niet impulsief gedrag of gewoontegedrag. Ten tweede is de RAA lekker overzichtelijk omdat er niet te veel variabelen in zitten.
+
+De RAA stelt dat beredeneerd gedrag vooral wordt bepaald door of mensen de intentie hebben dat gedrag uit te voeren. Die intentie wordt dan weer voorspeld door hoe mensen over het gedrag denken. Die gedachtes zijn gegroepeerd in drie clusters, die 'attitude', 'waargenomen norm', en 'waargenomen gedragscontrole' heten. In de psychologie noemen we zulke clusters van vergelijkbare gedachten meestal 'variabelen' of  'constructen'. De variabelen in de RAA zijn ge&iuml;llustreerd in Figuur 1.
+
+```{r raa, echo=FALSE, fig.width=6, fig.height=3.5, fig.cap="Figuur 1: De reasoned action approach."}
+
+raaGraph <-
+  DiagrammeR::create_graph() %>%
+  DiagrammeR::add_node(label="Gedrag") %>%
+  DiagrammeR::add_node(label="Intentie", to=1) %>%
+  DiagrammeR::add_node(label="Attitude", to=2) %>%
+  DiagrammeR::add_node(label="Waargenomen norm", to=2) %>%
+  DiagrammeR::add_node(label="Waargenomen gedragscontrole", to=2) %>%
+  behaviorchange::apply_graph_theme(c("layout", "dot", "graph"),
+                                    c("rankdir", "LR", "graph"),
+                                    c("outputorder", "nodesfirst", "graph"),
+                                    c("fixedsize", "false", "node"),
+                                    c("shape", "box", "node"),
+                                    c("style", "rounded,filled", "node"),
+                                    c("color", "#000000", "node"),
+                                    c("color", "#000000", "edge"),
+                                    c("dir", "forward", "edge"),
+                                    c("fillcolor", "#FFFFFF", "node"));
+
+DiagrammeR::render_graph(raaGraph);
+
+```
+
+In dit figuur representered de boxjes de variabelen, en de pijltjes laten zien welke variabelen volgens de theorie invloed hebben op welke andere variabelen. De RAA voorspelt dus dat mensen doen wat ze doen (tenminste, als het beredeneerd gedrag betreft) vanwege hun attitude, waargenomen norm, en waargenomen gedragscontrole.
+
+#### Attitude
+
+Attitudes bestaan uit twee delen: de verwachtingen die mensen hebben over de gevolgen van het gedrag, en de evaluaties van die verwachtingen, oftewel, of ze die gevolgen prettig vinden of juist onprettig. Als je een hogere dosis XTC gebruikt, is de kans dat je gaat hallucineren bijvoorbeeld groter. Mensen die ervaring hebben met het gebruiken van verschillende doses weten dit vaak, dus die zullen deze verwachting ook hebben. De meeste mensen nemen XTC vanwege de euforische en 'entactogene' effecten: je voelt je heel gelukkig en verbonden met andere mensen. Die hallucinaties zijn dus niet waarom de meeste mensen XTC nemen, maar sommige mensen vinden ze toch prettig.
+
+Dus, niet alleen hebben mensen verschillende verwachtingen van een hoge dosis XTC (sommigen verwachten dat je dan meer gaat hallucineren en anderen niet), mensen verschillen ook nog eens in of ze het prettig vinden om te hallucineren door een hoge dosis XTC. Samen met alle andere verwachtingen (welke effecten heeft een hoge dosis op je gezondheid? Op je geheugen? Op je energie? Op hoe makkelijk je contact maakt?) en de evaluaties die mensen daarvan hebben vormt dit je attitude.
+
+Er zijn twee soorten attitude: experi&euml;nti&euml;le attitude en instrumentele attitude. experi&euml;nti&euml;le attitude gaat meer over je ervaringen en gevoelens, en instrumentele attitude gaat meer over doelen en lange termijn behoeftes. Als iemand de effecten van XTC bijvoorbeeld fijn vindt, dan is dat een voorbeeld van een opvatting die onder de experi&euml;nti&euml;le attitude valt. Als iemand geen XTC bij zich heeft, en iemand anders biedt XTC aan, dan kan die persoon nadenken over dat die XTC wellicht niet getest is, en misschien een hele hoge dosis MDMA bevat, of vervuild is. Zo'n overweging is een voorbeeld van instrumentele attitude. Experi&euml;nti&euml;le attitude gaat dus meer over gevoel en ervaring.
+
+#### Waargenomen norm
+
+Waargenomen norm gaat over de opvattingen die mensen hebben over normen die bestaan. Het gaat hier dus niet om de normen die echt bestaan (die worden vaak 'sociale normen' genoemd). Waargenomen normen kunnen anders zijn dan sociale normen omdat mensen niet altijd een goede indruk van de wereld hebben. Mensen die bovengemiddeld drinken denken bijvoorbeeld vaak dat ze gemiddeld (of zelfs ondergemiddeld) drinken. Het gedrag van mensen wordt niet be&iuml;vloedt door de echte sociale normen, maar door hoe mensen denken dat de normen zijn. Dat laatste maakt immers deel uit van hun psychologie; het eerste kan geen invloed hebben, want dat zit niet 'in hun hoofd'. Dit geldt overigens ook voor attitude: het gaat hier niet over hoe de wereld in elkaar zit, maar over hoe mensen d&eacute;nken dat de wereld in elkaar zit.
+
+De waargenomen norm bestaat uit twee soorten norm: descriptieve norm en injunctieve norm. Descriptieve norm gaat over wat je denkt dat andere mensen doen, en injunctieve norm over wat je denkt dat andere mensen vinden dat jij moet doen. Als iemand denkt dat de meeste mensen door-de-weeks geen alcohol drinken, is de kans dat die persoon dat zelf gaat doen wat lager. En als iemand denkt dat de mensen zijn zijn of haar omgeving er negatief tegenover staan als hij of zij door-de-weeks alcohol drinkt, dan is de kans dat hij of zij dat doet ook wat lager.
+
+De waargenomen norm is niet voor iedereen even belangrijk: hoe sterk iemand zich voegt naar de waargenomen norm wordt beschreven in de zogenaamde 'motivation to comply', wat wel te vertalen is als 'motivatie om te voegen'. Het kan bijvoorbeeld zo zijn dat iemand eerder volgt wat zijn of haar vrienden doen dan wat zijn of haar ouders doen; of dat afkeuring van iemands ouders of familie niet zoveel uitmaakt, maar dat afkeuring van de partner wel effect heeft.
+
+#### Waargenomen gedragscontrole
+
+De waargenomen gedragscontrole gaat over (de naam zegt het al) of iemand denkt het gedrag onder controle te hebben. Dit bestaat weer uit twee onderdelen: of iemand denkt dat hij of zij het gedrag kan uitvoeren, en of iemand denkt dat er obstakels zijn om het gedrag uit te voeren.
+
+Dat eerste kun je zien als iemands indruk van zijn of haar vaardigheden. Als je ergens goed in bent, dan is je indruk van je vaardigheden (terecht) hoger. Maar iedereen kent wel mensen die overschatten hoe goed ze in dingen zijn; of die juist denken dat ze niks kunnen terwijl dat heel erg meevalt.
+
+Het tweede gaat over obstakels. Iemand kan bijvoorbeeld overtuigd zijn dat hij of zij goed is in het onopvallend doormidden breken van XTC-pillen; maar als diegene op een feest is en er steeds iemand van de staf naar hem of haar kijkt, zal diegene het toch niet snel proberen. In dat geval is het eerste deel van de waargenomen gedragscontrole wel in orde (iemand denkt goed onopvallend een pil te kunnen breken), maar het tweede deel niet (er is een obstakel waardoor diegene dat gedrag toch niet uit kan voeren). Een ander voorbeeld van een obstakel zou natuurlijk zijn als diegene geen XTC-pil heeft.
+
+### Andere theori&euml;n over gedrag
+
+Volgens de RAA verklaren die drie variabelen samen de intentie van mensen om beredeneerd gedrag uit te voeren. Er zijn nog veel meer theori&euml;n die gedrag verklaren, die elk over een ander klein stukje van menselijk gedrag gaan. Ze hebben echter gemeen dat ze kleine stukjes van de menselijke psychologie beschrijven met als doel om die meetbaar, en soms veranderbaar, te maken. Deze theori&euml;n zijn de enige manier om grip te krijgen op de menselijke psychologie en dus op menselijk gedrag. Goede bronnen als startpunt om meer te leren over zulke theori&euml;n zijn bijvoorbeeld het Intervention Mapping boek.
+
+Bij de uitleg van gedragverandering en van de ABCD zal ik voorbeelden gebruiken uit de RAA; niet omdat 
+
+## Gedragsverandering
+
+Als je iets in de wereld wil veranderen, oftewel, als je menselijk gedrag wil veranderen (want hoe de wereld is, is het gevolg van gedrag van mensen), dan moet je dus veranderen wat mensen denken. Je moet ze dus iets leren. Als mensen bijvoorbeeld ten onrechte denken dat er veel XTC wordt gebruikt, dan kun je dat misverstand corrigeren, wat (*als* descriptieve norm een rol speelt bij hun gedrag) dan zorgt dat er minder wordt gebruikt. De verandering van zulke psychologische variabelen komt er altijd op neer dat mensen iets leren over de wereld.
+
+Mensen kunnen 
+
+
+# ABCDs
+
+

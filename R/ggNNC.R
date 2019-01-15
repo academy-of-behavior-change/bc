@@ -78,9 +78,9 @@
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
 #' @seealso [nnc()]
-#' @references Gruijters, S. L. K., & Peters, G.-J. Y. (2017). Introducing the
-#' Numbers Needed for Change (NNC): A practical measure of effect size for
-#' intervention research.
+#' @references Gruijters, S. L. K., & Peters, G.-J. Y. (2019). *Gauging the impact of behavior
+#' change interventions: A tutorial on the Numbers Needed to Treat.*
+#' PsyArXiv. doi:[10.31234/osf.io/2bau7](https://doi.org/10.31234/osf.io/2bau7)
 #' @keywords utilities
 #' @examples
 #'

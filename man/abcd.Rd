@@ -2,6 +2,7 @@
 % Please edit documentation in R/abcd.R
 \name{abcd}
 \alias{abcd}
+\alias{print.abcdiagram}
 \title{Acyclic Behavior Change Diagram}
 \usage{
 abcd(specs, specCols = c("bcps", "cnds", "apps", "sdts", "dets", "pobs",
@@ -11,6 +12,10 @@ abcd(specs, specCols = c("bcps", "cnds", "apps", "sdts", "dets", "pobs",
   includeColNames = TRUE, maxLabelLength = 30, silent = FALSE,
   returnGraphOnly = FALSE,
   regExReplacements = list(c("\\\\\\"", "`"), c("\\\\'", "`"), c("\\\\\\\\", "/")))
+
+\method{print}{abcdiagram}(x, width = x$input$width,
+  height = x$input$height,
+  title = DiagrammeR::get_graph_name(x$output$graph))
 }
 \arguments{
 \item{specs}{The specifications: either a google sheets URL,
@@ -63,6 +68,9 @@ object or only the \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} graph.}
 expressions that will be applied to the specifications
 before generating the ABCD. This can be used to sanitize
 problematic characters (e.g. ', " and ).}
+
+\item{width, height}{Width and height to use
+when printing the ABCD.}
 }
 \value{
 A list consisting of an \code{input}, \code{intermediate}, and

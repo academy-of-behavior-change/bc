@@ -18,7 +18,6 @@
 #'
 #' For more details, see Gruijters & Peters (2019) for details.
 #'
-#' @aliases nnc nnt
 #' @param d The value of Cohen's *d*.
 #' @param cer The Control Event Rate.
 #' @param r The correlation between the determinant and behavior (for mediated
@@ -74,9 +73,9 @@
 #' @author Gjalt-Jorn Peters & Stefan Gruijters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @references Gruijters, S. L. K., & Peters, G.-J. Y. (2019). *Introducing the
-#' Numbers Needed for Change (NNC): A practical measure of effect size for
-#' intervention research.* PsyArXiv. doi:[10.31234/osf.io/2bau7](https://doi.org/10.31234/osf.io/2bau7)
+#' @references Gruijters, S. L. K., & Peters, G.-J. Y. (2019). *Gauging the impact of behavior
+#' change interventions: A tutorial on the Numbers Needed to Treat.*
+#' PsyArXiv. doi:[10.31234/osf.io/2bau7](https://doi.org/10.31234/osf.io/2bau7)
 #' @keywords utilities
 #' @examples
 #'
@@ -89,6 +88,7 @@
 #'
 #' @name nnc
 #' @rdname nnc
+#' @aliases nnc nnt
 #' @export nnc
 #' @export nnt
 nnc <- nnt <- function(d = NULL, cer = NULL, r = 1, n = NULL,

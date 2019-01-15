@@ -1,8 +1,8 @@
 Package: behaviorchange
 Type: Package
 Title: Tools for Behavior Change Researchers and Professionals
-Version: 0.0.2
-Date: 2018-09-25
+Version: 0.1.0
+Date: 2019-09-25
 Authors@R: c(person("Gjalt-Jorn", "Peters",
                     email = "gjalt-jorn@a-bc.eu",
                     role = c("aut", "cre", "ctb")))
@@ -13,9 +13,11 @@ Description: Contains specialised analyses and
     These facilitate conducting determinant studies
     (for example, using confidence interval-based
     estimation of relevance, CIBER, or CIBERlite
-    plots) and systematically developing, reporting,
+    plots), systematically developing, reporting,
     and analysing interventions (for example, using
-    acyclic behavior change diagrams or ABCDs). This
+    acyclic behavior change diagrams or ABCDs), and
+    reporting about intervention effectiveness (for
+    example, using the Numbers Needed for Change). This
     package is especially useful for researchers in
     the field of behavior change or health psychology
     and to behavior change professionals such as

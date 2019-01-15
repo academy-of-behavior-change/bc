@@ -182,9 +182,9 @@ behaviorchange::ggNNC(behaviorchange::erDataSeq(er=.9),
 
 }
 \references{
-Gruijters, S. L. K., & Peters, G.-J. Y. (2017). Introducing the
-Numbers Needed for Change (NNC): A practical measure of effect size for
-intervention research.
+Gruijters, S. L. K., & Peters, G.-J. Y. (2019). \emph{Gauging the impact of behavior
+change interventions: A tutorial on the Numbers Needed to Treat.}
+PsyArXiv. doi:\href{https://doi.org/10.31234/osf.io/2bau7}{10.31234/osf.io/2bau7}
 }
 \seealso{
 \code{\link[=nnc]{nnc()}}
