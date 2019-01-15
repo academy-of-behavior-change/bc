@@ -2,7 +2,7 @@ Package: behaviorchange
 Type: Package
 Title: Tools for Behavior Change Researchers and Professionals
 Version: 0.1.0
-Date: 2019-09-25
+Date: 2019-01-16
 Authors@R: c(person("Gjalt-Jorn", "Peters",
                     email = "gjalt-jorn@a-bc.eu",
                     role = c("aut", "cre", "ctb")))
@@ -38,7 +38,7 @@ Imports: BiasedUrn (>= 1.07),
          gtable (>= 0.2.0),
          magrittr (>= 0.1.5),
          methods (>= 3.0.0),
-         ufs (>= 0.0.1),
+         ufs (>= 0.1.0),
          userfriendlyscience (>= 0.7.1),
          viridis (>= 0.5.1)
 Suggests: 
