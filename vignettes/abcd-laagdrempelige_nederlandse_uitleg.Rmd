@@ -199,8 +199,17 @@ Het tweede deel is de diagram zelf (de 'D' in ABCD). Dit is een visualisatie van
 
 De ABCD diagram voor het voorbeeld hierboven ziet er zo uit:
 
-```{r abcd-diagram, echo=FALSE, fig.width=14, fig.height=7}
-print(behaviorchange::abcd(behaviorchange::abcd_specs_dutch_xtc));
+![De ABCD voor het XTC voorbeeld](abcd_specs_dutch_xtc.png){ width=100% }
+
+```{r abcd-diagram, echo=FALSE, fig.width=14, fig.height=7, eval=FALSE}
+abcd_specs_dutch_xtc_graph <-
+  behaviorchange::abcd(behaviorchange::abcd_specs_dutch_xtc);
+print(abcd_specs_dutch_xtc_graph);
+DiagrammeR::export_graph(abcd_specs_dutch_xtc_graph$output$graph,
+                         here::here('vignettes', 'abcd_specs_dutch_xtc.png'),
+                         title="Acyclic Behavior Change Diagram",
+                         width=3000,
+                         height=1000);
 ```
 
 Deze ABCD laat in het midden, op het 'breedste' (eigenlijk hoogste' punt van de diagram, in grijze boxjes de subdeterminanten zien waar de interventie zich op richt. Dit zijn dus bijvoorbeeld de opvattingen die zijn ge&iuml;dentificeerd in determinantenonderzoek. Hoe meer deze lijst alle belangrijke aspecten van de psychologie van de doelgroep bevat, hoe hoger de effectiviteit van de interventie zal zijn.
