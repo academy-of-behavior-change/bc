@@ -4,7 +4,7 @@ author: "Gjalt-Jorn Peters"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{ABCD: Laagdrempelige Nederlandse uitleg}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -97,19 +97,80 @@ Dat eerste kun je zien als iemands indruk van zijn of haar vaardigheden. Als je 
 
 Het tweede gaat over obstakels. Iemand kan bijvoorbeeld overtuigd zijn dat hij of zij goed is in het onopvallend doormidden breken van XTC-pillen; maar als diegene op een feest is en er steeds iemand van de staf naar hem of haar kijkt, zal diegene het toch niet snel proberen. In dat geval is het eerste deel van de waargenomen gedragscontrole wel in orde (iemand denkt goed onopvallend een pil te kunnen breken), maar het tweede deel niet (er is een obstakel waardoor diegene dat gedrag toch niet uit kan voeren). Een ander voorbeeld van een obstakel zou natuurlijk zijn als diegene geen XTC-pil heeft.
 
-### Andere theori&euml;n over gedrag
+### Andere theorie&euml;n over gedrag
 
-Volgens de RAA verklaren die drie variabelen samen de intentie van mensen om beredeneerd gedrag uit te voeren. Er zijn nog veel meer theori&euml;n die gedrag verklaren, die elk over een ander klein stukje van menselijk gedrag gaan. Ze hebben echter gemeen dat ze kleine stukjes van de menselijke psychologie beschrijven met als doel om die meetbaar, en soms veranderbaar, te maken. Deze theori&euml;n zijn de enige manier om grip te krijgen op de menselijke psychologie en dus op menselijk gedrag. Goede bronnen als startpunt om meer te leren over zulke theori&euml;n zijn bijvoorbeeld het Intervention Mapping boek.
+Volgens de RAA verklaren die drie variabelen samen de intentie van mensen om beredeneerd gedrag uit te voeren. Er zijn nog veel meer theorie&euml;n die gedrag verklaren, die elk over een ander klein stukje van menselijk gedrag gaan. Ze hebben echter gemeen dat ze kleine stukjes van de menselijke psychologie beschrijven met als doel om die meetbaar, en soms veranderbaar, te maken. Deze theorie&euml;n zijn de enige manier om grip te krijgen op de menselijke psychologie en dus op menselijk gedrag. Goede bronnen als startpunt om meer te leren over zulke theorie&euml;n zijn bijvoorbeeld het Intervention Mapping boek.
 
-Bij de uitleg van gedragverandering en van de ABCD zal ik voorbeelden gebruiken uit de RAA; niet omdat 
+Als een theorie gedrag verklaart, worden de variabelen in zulke theorie&euml;n vaak 'determinanten' genoemd. Een determinant is dus een psychologische variabele die het gedrag van mensen bepaalt. Zulke determinanten zijn op een heel algemeen, globaal niveau gedefinieerd. Ze komen immers uit theorie&euml;n die vaak voor mensen in het algemeen, en gedrag in het algemeen, zijn ontwikkeld. Die determinanten bestaan uit specifiekere opvattingen die subdeterminanten heten.
 
-## Gedragsverandering
+Attitude bestaat bijvoorbeeld uit *alle* verwachtingen die mensen hebben over de gevolgen van een gedrag, en hoe wenselijk of onwenselijk ze die verwachtingen vinden. Tenminste, in theorie (letterlijk). In het echt lukt het natuurlijk nooit om al die subdeterminanten (al die verwachtingen en evaluaties) in kaart te brengen. Je probeert dat wel zo volledig mogelijk, want alleen de subdeterminanten zijn specifiek genoeg om je er op te richten met een interventie.
+
+## Leren
 
 Als je iets in de wereld wil veranderen, oftewel, als je menselijk gedrag wil veranderen (want hoe de wereld is, is het gevolg van gedrag van mensen), dan moet je dus veranderen wat mensen denken. Je moet ze dus iets leren. Als mensen bijvoorbeeld ten onrechte denken dat er veel XTC wordt gebruikt, dan kun je dat misverstand corrigeren, wat (*als* descriptieve norm een rol speelt bij hun gedrag) dan zorgt dat er minder wordt gebruikt. De verandering van zulke psychologische variabelen komt er altijd op neer dat mensen iets leren over de wereld.
 
-Mensen kunnen 
+Levende wezens kunnen leren op allerlei manieren. Dit kunnen we omdat er leerprocessen zijn ge&euml;volueerd (die op hun beurt zijn ge&euml;volueerd omdat organismen met een mutatie waardoor ze beter konden leren een voordeel hadden ten opzichte van dieren die dat minder goed konden, waardoor ze meer nakomelingen kregen, zodat de genen die coderen voor die mutatie zich door de populatie verspreiden). Die evolutionaire leerprocessen (ELPs) zijn hoe dieren (en dus mensen) leren. Die ELPs zijn bijvoorbeeld habituatie, conditionering, of emotiegebaseerd leren - er zijn er negen (zie [Crutzen & Peters, 2018](https://doi.org/10.1080/17437199.2017.1362569)).
 
+Die ELPs moeten dus worden ingeschakeld als je een mens iets wil leren. Tegelijkertijd zijn deze leerprocessen heel basaal. Over de jaren heen zijn er allerlei methoden op hogere niveau's onderzocht die 'onder de motorkap' deze ELPs inzetten. Deze gedragsveranderingsprincipes (Behavior Change Principles, BCPs) zijn beschrijvingen van wat je kunt doen om mensen bepaalde dingen te leren. Een voorbeeld van een lijst van BCPs is de lijst van methoden voor gedragsverandering in Intervention Mapping (zie [Kok et al., 2016](https://osf.io/ng3xh)).
+
+Het komt wel heel nauw met het inzetten van deze gedragsveranderingsprincipes (BCPs). Dit komt omdat ze achter de schermen werken door het inzetten van evolutionaire leerprocessen. Die zijn nooit ge&euml;volueerd omdat ze handig zijn bij gedragsveranderingscampagnes, maar altijd omdat ze ooit een voordeel hadden voor onze verre voorouders. Diezelfde omstandigheden moeten in de BCP dus heel nauwkeurig worden benaderd, anders is de kans dat ze de onderliggende ELPs succesvol inschakelen klein, en dan werkt de interventie niet.
+
+## Toepassingen
+
+BCPs en ELPs zijn heel algemeen en abstract. Dat is logisch, want het zijn algemene leerprocessen en gedragsveranderingsprincipes (BCPs). Ze zijn niet ontwikkeld voor, of onderzocht bij, een specifieke populatie of een specifiek gedrag, maar juist voor 'mensen in het algemeen'. Daarom moeten ze altijd een specifieke, concrete invulling krijgen.
+
+Zo'n invulling heet een toepassing ('application' in het Engels). Dezelfde BCP kan op allerlei verschillende manieren worden toegepast. Rolmodellen ('modeling' in het Engels) kunnen bijvoorbeeld worden gebruikt in een lesplan op een middelbare school, of in een filmpjes, of in een serious game, of in een comic. Hoe het er op het eerste gezicht uitziet maakt vaak weinig uit voor of de onderliggende evolutionaire leerprocessen goed worden aangesproken. Dat zit hem in andere details, die vaak worden beschreven in de zogenaamde 'voorwaarden voor effectiviteit' (in Intervention Mapping heten die ook wel 'parameters voor effectiviteit').
+
+Bij het kiezen of ontwikkelen van de toepassingen waarnaar de BCPs worden vertaald is het dus belangrijk om aan die voorwaarden voor effectiviteit te voldoen. Verder is het belangrijk dat de toepassingen aansluiten bij de doelgroep, cultuur, en context. De toepassingen zijn tenslotte het concrete, tastbare product dat de doelgroep onder ogen krijgt.
+
+## Effectieve gedragsverandering
+
+Dus, nog even alles op een rijtje:
+
+- Mensen kunnen leren omdat er evolutionaire leerprocessen (ELPs) zijn ge&euml;volueerd;
+- Deze ELPs kunnen worden ingezet via gedragsveranderingsprincipes (BCPs);
+- Die BCPs worden vertaald naar concrete toepassingen, waarbij aan de voorwaarden voor effectiviteit moet worden voldaan;
+- Die toepassingen richten zich op specifieke opvattingen die mensen hebben (subdeterminanten);
+- Die subdeterminanten maken deel uit van determinanten op een meer algemeen niveau;
+- Die determinanten bepalen of mensen bepaald gedrag uitvoeren.
+
+Tot slot nog een extra bouwsteentje: het concept van een subgedrag. Net als determinanten uit subdeterminanten bestaan, bestaat gedrag vaak uit subgedragingen. Als je het bijvoorbeeld hebt over condoomgebruik, wil je eigenlijk dat mensen meerdere gedragingen uitvoeren: condooms kopen, condooms bij zich dragen, op het juiste moment over condooms beginnen, en de condooms correct gebruiken. Er zijn verschillende redenen waarom mensen elk van die subgedragingen wel of niet uitvoeren. En om succesvol te zijn moet een interventie bereiken dat mensen al die subgedragingen uitvoeren.
+
+Dus, een succesvolle interventie vereist dat duidelijk in kaart is gebracht:
+
+1. Wat het doelgedrag is;
+2. Uit welke subgedragingen dat doelgedrag bestaat;
+3. Wat de belangrijke determinanten van elk van die subgedragingen zijn;
+4. Wat binnen elke determinant van elk subgedrag de belangrijke subdeterminanten zijn;
+5. Welke gedragsveranderingsprincipes (BCPs) geschikt zijn om die subdeterminanten te veranderen;
+6. Aan welke effectiviteitsvoorwaarden moet worden voldaan als die BCPs worden toegepast;
+7. In welke toepassingen die BCPs worden toegepast.
+
+Die zeven stappen kunnen worden gezien als een soort ketting: een BCP wordt toegepast volgens de effectiviteisvoorwaarden in een toepassing die invloed heeft op een subdeterminant die deel uitmaakt van een determinant die invloed heeft op een subgedrag die deel uitmaakt van het doelgedrag.
+
+Het veranderen van het doelgedrag vereist dus een serie van dat soort kettingen, waarbij elke ketting uitlegt hoe een subdeterminant wordt be&iuml;nvloedt en hoe dat uiteindelijk invloed heeft op gedrag. Het idee is dus dat alle kettingen samen alle belangrijke subdeterminanten bevatten. Oftewel, alle belangrijke stukjes psychologie van de doelgroep met betrekking tot het doelgedrag.
+
+Dit wordt natuurlijk snel onoverzichtelijk, zoveel verschillende, vaak abstracte, stukjes informatie. De ABCD is een hulpmiddel om dit in kaart te brengen.
 
 # ABCDs
 
+De ABCD bestaat uit twee delen. Het eerste deel is de ABCD specificatietabel. Dit is een tabel met zeven kolommen, van links naar rechts:
 
+1. Gedragsveranderingsprincipes (BCPs, en 'methods for behavior change' in Intervention Mapping);
+2. Effectiviteitsvoorwaarden ('parameters for effectiveness' in Intervention Mapping);
+3. Toepassingen ('applications' in Intervention Mapping); 
+4. Subdeterminanten (vaak 'beliefs' genoemd in Intervention Mapping);
+5. Determinanten;
+6. Subgedragingen ('performance Objectives' in Intervention Mapping);
+7. Het doelgedrag ('target behavior' in Intervention Mapping).
+
+Elke rij in de tabel geeft een 'ketting' weer die de aannames van een stukje van een interventie expliciet en inzichtelijk maken.
+
+Het tweede deel is 
+
+
+# Referenties
+
+Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary learning processes as the foundation for behaviour change. *Health Psychology Review, 12*, 43–57. doi:[10.1080/17437199.2017.1362569](https://doi.org/10.1080/17437199.2017.1362569)
+
+Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. *Health Psychology Review, 10*, 297–312. doi:[10.1080/17437199.2015.1077155](https://doi.org/10.1080/17437199.2015.1077155)

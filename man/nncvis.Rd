@@ -7,9 +7,6 @@
 \alias{erDataSeq}
 \alias{nncvis}
 \alias{ggNNC}
-\alias{erDataSeq}
-\alias{convert.threshold.to.er}
-\alias{convert.er.to.threshold}
 \title{Visualising Numbers Needed for Change}
 \usage{
 convert.threshold.to.er(threshold, mean, sd, eventIfHigher = TRUE,
@@ -22,8 +19,9 @@ erDataSeq(er = NULL, threshold = NULL, mean = NULL, sd = NULL,
   eventIfHigher = TRUE, pRange = c(1e-06, 0.99999), xStep = 0.01)
 
 ggNNC(cerDataSeq, d = NULL, eventDesirable = TRUE, r = 1,
-  xlab = "Continuous outcome", plotTitle = c("Numbers Needed for Change = ",
-  ""), theme = ggplot2::theme_bw(), lineSize = 1, cerColor = "#EBF2F8",
+  xlab = "Continuous outcome",
+  plotTitle = c("Numbers Needed for Change = ", ""),
+  theme = ggplot2::theme_bw(), lineSize = 1, cerColor = "#EBF2F8",
   eerColor = "#172F47", cerLineColor = "#888888",
   eerLineColor = "#000000", dArrowColor = "#000000", cerAlpha = 0.66,
   eerAlpha = 0.66, xLim = NULL, xLimAutoDensityTolerance = 0.001,
@@ -31,8 +29,8 @@ ggNNC(cerDataSeq, d = NULL, eventDesirable = TRUE, r = 1,
   desirableColor = "#00FF00", desirableAlpha = 0.2,
   undesirableColor = "#FF0000", undesirableAlpha = 0.2,
   desirableTextColor = "#009900", undesirableTextColor = "#990000",
-  dArrowDistance = 0.04 * max(cerDataSeq$density), dLabelDistance = 0.08 *
-  max(cerDataSeq$density))
+  dArrowDistance = 0.04 * max(cerDataSeq$density),
+  dLabelDistance = 0.08 * max(cerDataSeq$density))
 }
 \arguments{
 \item{threshold}{If the event rate is not available, a threshold value can
@@ -182,9 +180,9 @@ behaviorchange::ggNNC(behaviorchange::erDataSeq(er=.9),
 
 }
 \references{
-Gruijters, S. L. K., & Peters, G.-J. Y. (2019). \emph{Gauging the impact of behavior
-change interventions: A tutorial on the Numbers Needed to Treat.}
-PsyArXiv. doi:\href{https://doi.org/10.31234/osf.io/2bau7}{10.31234/osf.io/2bau7}
+Gruijters, S. L., & Peters, G. Y. (2019). Gauging the
+impact of behavior change interventions: A tutorial on the Numbers
+Needed to Treat. \emph{PsyArXiv.} doi:\href{https://doi.org/10.31234/osf.io/2bau7}{10.31234/osf.io/2bau7}
 }
 \seealso{
 \code{\link[=nnc]{nnc()}}

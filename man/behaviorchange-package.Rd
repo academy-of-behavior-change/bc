@@ -7,19 +7,19 @@
 \title{behaviorchange: Tools for Behavior Change Researchers and Professionals}
 \description{
 Contains specialised analyses and
-visualisation tools for behavior change science.
-These facilitate conducting determinant studies
-(for example, using confidence interval-based
-estimation of relevance, CIBER, or CIBERlite
-plots), systematically developing, reporting,
-and analysing interventions (for example, using
-acyclic behavior change diagrams or ABCDs), and
-reporting about intervention effectiveness (for
-example, using the Numbers Needed for Change). This
-package is especially useful for researchers in
-the field of behavior change or health psychology
-and to behavior change professionals such as
-intervention developers and prevention workers.
+    visualisation tools for behavior change science.
+    These facilitate conducting determinant studies
+    (for example, using confidence interval-based
+    estimation of relevance, CIBER, or CIBERlite
+    plots), systematically developing, reporting,
+    and analysing interventions (for example, using
+    acyclic behavior change diagrams or ABCDs), and
+    reporting about intervention effectiveness (for
+    example, using the Numbers Needed for Change). This
+    package is especially useful for researchers in
+    the field of behavior change or health psychology
+    and to behavior change professionals such as
+    intervention developers and prevention workers.
 }
 \details{
 Contains specialised analyses and

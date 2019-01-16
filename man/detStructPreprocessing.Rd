@@ -6,9 +6,6 @@
 \alias{detStructAddVarLabels}
 \alias{detStructPreprocessing}
 \alias{detStructAddVarNames}
-\alias{detStructAddVarLabels}
-\alias{detStructComputeProducts}
-\alias{detStructComputeScales}
 \alias{detStructComputeProducts}
 \alias{detStructComputeScales}
 \title{Functions to preprocess determinant structures}

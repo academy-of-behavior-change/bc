@@ -26,7 +26,7 @@ URL: https://a-bc.eu/R/behaviorchange
 BugReports: https://github.com/academy-of-behavior-change/behaviorchange/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.0.0)
 Imports: BiasedUrn (>= 1.07),
