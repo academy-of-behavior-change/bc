@@ -652,7 +652,7 @@ print.abcdiagram <- function(x,
                                   ...));
 }
 
-#' Three simple example datasets for ABCD's
+#' Simple example datasets for ABCD's
 #'
 #' This are three (nested) datasets illustrating the logic model of change for
 #' a simple condom use intervention in a way that can be visualised using
@@ -673,8 +673,11 @@ print.abcdiagram <- function(x,
 #' * `Performance Objectives`: Explicitly defined sub-behaviors at a level of specificity that distinguishes them from other sub-behaviors, and that together form the target behavior.
 #' * `Target Behavior`: The ultimate target behavior, usually defined at a relatively general level.
 #'
+#' In addition to these three datasets, a Dutch example specification
+#' is included named `abcd_specs_dutch_xtc`.
+#'
 #' @docType data
-#' @aliases abcd_specs_complete abcd_specs_without_conditions abcd_specs_single_po_without_conditions
+#' @aliases abcd_specs_complete abcd_specs_without_conditions abcd_specs_single_po_without_conditions abcd_specs_dutch_xtc
 #' @keywords data
 #' @name abcd_specs_examples
 #' @usage data(abcd_specs_complete)
@@ -685,7 +688,8 @@ print.abcdiagram <- function(x,
 #' for `abcd_specs_single_po_without_conditions`, a data frame with 5 variables and 4 rows;
 c("abcd_specs_complete",
   "abcd_specs_without_conditions",
-  "abcd_specs_single_po_without_conditions");
+  "abcd_specs_single_po_without_conditions",
+  "abcd_specs_dutch_xtc");
 
 # abcd_specs_complete <-
 #   data.frame(c("Persuasive communication",
@@ -782,3 +786,48 @@ c("abcd_specs_complete",
 #        localBackup="C:/Sync/Data/R/tmp/abcd_specs_single_po_without_conditions.csv",
 #        outputFile=c("C:/Sync/Data/R/tmp/abcd_specs_single_po_without_conditions.svg",
 #                     "C:/Sync/Data/R/tmp/abcd_specs_single_po_without_conditions.png"));
+
+### Dutch example
+# abcd_specs_dutch_xtc <- googlesheets::gs_read(googlesheets::gs_url("https://docs.google.com/spreadsheets/d/1EKVqtG1kmf0ZxEvFUOBqUmakXTd9Ye3aSyZucBqiyRM/edit?usp=sharing"))
+#
+#
+# abcd_specs_dutch_xtc <-
+#   data.frame(c("Persuasieve communicatie",
+#                "Persuasieve communicatie",
+#                "Persuasieve communicatie",
+#                "Informatie over de goedkeuring van anderen",
+#                "Rolmodellen"),
+#              c("Boodschappen moeten relevant zijn, en niet teveel afwijken van wat de doelgroep gelooft; kan worden gestimuleerd met verrassing en herhaling; bevat argumenten.",
+#                "Boodschappen moeten relevant zijn, en niet teveel afwijken van wat de doelgroep gelooft; kan worden gestimuleerd met verrassing en herhaling; bevat argumenten.",
+#                "Boodschappen moeten relevant zijn, en niet teveel afwijken van wat de doelgroep gelooft; kan worden gestimuleerd met verrassing en herhaling; bevat argumenten.",
+#                "Anderen staan ook echt positief tegenover het doelgedrag.",
+#                "De doelgroep moet zich kunnen identificeren met het model; het model moet worstelen met het wenselijke gedrag; het model moet worden beloond voor het wenselijke gedrag."),
+#              c("Een infographic laat zien hoe de effecten van XTC veranderen als de dosis verandert.",
+#                "Een infographic laat zien hoe de effecten van XTC veranderen als de dosis verandert.",
+#                "Een infographic laat zien hoe de effecten van XTC veranderen als de dosis verandert.",
+#                "Het noemen van het Party Panel resultaat dat de meeste mensen lager willen doseren.",
+#                "Een comic met voorbeelden van gesprekken over dosering."),
+#              c("Als ik een hoge dosis XTC gebruik, dan voel ik me minder verbonden met anderen.",
+#                "Als ik een hoge dosis XTC gebruik, dan voel ik me meer geisoleerd.",
+#                "Als ik een hoge dosis XTC gebruik, dan onthoud ik minder.",
+#                "De meeste mensen staan goedkeurend tegenover het vermijden van een hoge dosis MDMA.",
+#                "Ik kan uitleggen waarom ik volgens de richtlijnen wil doseren."),
+#              c("Attitude", "Attitude", "Attitude", "Waargenomen norm", "Waargenomen gedragscontrole"),
+#              c("Besluiten een hoge dosis MDMA te willen vermijden",
+#                "Besluiten een hoge dosis MDMA te willen vermijden", "Besluiten een hoge dosis MDMA te willen vermijden",
+#                "Besluiten een hoge dosis MDMA te willen vermijden", "Met de uitgaansgroep van te voren bespreken welke dosis iedereen wil gebruiken"),
+#              c("XTC doseren volgens de richtlijnen",
+#                "XTC doseren volgens de richtlijnen",
+#                "XTC doseren volgens de richtlijnen",
+#                "XTC doseren volgens de richtlijnen",
+#                "XTC doseren volgens de richtlijnen"));
+#
+# names(abcd_specs_dutch_xtc) <-
+#   c("Gedragsveranderingsprincipes (`Behavior Change Principles`, BCPs, zoals methoden, BCTs, etc)",
+#     "Voorwaarden voor effectiviteit (`parameters for use`)",
+#     "Toepassingen (`applications`)",
+#     "Sub-determinanten (opvattingen, bv. beliefs; kunnen worden geformuleerd als Change Objectives)",
+#     "Determinanten",
+#     "Sub-gedragingen (`Performance Objectives`)",
+#     "Doelgedrag");
+

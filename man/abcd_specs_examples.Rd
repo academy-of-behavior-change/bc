@@ -6,7 +6,8 @@
 \alias{abcd_specs_complete}
 \alias{abcd_specs_without_conditions}
 \alias{abcd_specs_single_po_without_conditions}
-\title{Three simple example datasets for ABCD's}
+\alias{abcd_specs_dutch_xtc}
+\title{Simple example datasets for ABCD's}
 \format{For \code{abcd_specs_complete}, a data frame with 7 variables and 7 rows;
 for \code{abcd_specs_without_conditions}, a data frame with 6 variables and 7 rows;
 for \code{abcd_specs_single_po_without_conditions}, a data frame with 5 variables and 4 rows;}
@@ -35,5 +36,8 @@ dataset are:
 \item \code{Performance Objectives}: Explicitly defined sub-behaviors at a level of specificity that distinguishes them from other sub-behaviors, and that together form the target behavior.
 \item \code{Target Behavior}: The ultimate target behavior, usually defined at a relatively general level.
 }
+
+In addition to these three datasets, a Dutch example specification
+is included named \code{abcd_specs_dutch_xtc}.
 }
 \keyword{data}
